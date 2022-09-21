@@ -1,0 +1,2 @@
+module LogisticsManagersHelper
+end

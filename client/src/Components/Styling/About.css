@@ -1,0 +1,14 @@
+.main-container{
+    display: flex;
+    width: 100px;
+    justify-content:center;
+    align-items: baseline;
+    flex-wrap: wrap-reverse;
+}
+
+.col{
+    float: left;
+    width: 50%;
+    height: auto;
+    font-size: 1.9vw
+}
