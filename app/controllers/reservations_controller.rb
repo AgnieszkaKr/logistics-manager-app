@@ -17,11 +17,14 @@ class ReservationsController < ApplicationController
     end
 
     def update
-
+        reservation = Reservation.find(params[:id])
+        updateReservation = reservation.update(permitted_params)
+        render json: updateReservation
     end
 
     def destroy
-
+        reservation = Reservation.find(params[:id])
+        reservation.destroy
     end
 
     private 

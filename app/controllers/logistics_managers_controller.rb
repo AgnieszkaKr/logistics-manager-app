@@ -3,15 +3,16 @@ class LogisticsManagersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
 
     def index
-
+        render json: LogisticsManager.all
     end
 
     def show
-
+        logisticsManager = LogisticsManager.find(params[:id])
+        render json: logisticsManager
     end
 
     def create
-
+        
     end
 
     def update
