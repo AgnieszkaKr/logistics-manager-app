@@ -12,21 +12,25 @@ class LogisticsManagersController < ApplicationController
     end
 
     def create
-        
+        newManager = LogisticsManager.create!(permitted_params)
+        render json: newManager
     end
 
     def update
-
+        logisticsManager = LogisticsManager.find(params[:id])
+        updatedManager =  logisticsManager.update(permitted_params)
     end
 
     def destroy
-
+        logisticsManager = LogisticsManager.find(params[:id])
+        logisticsManager.destroy
+        head :no_content
     end
 
     private 
 
     def permitted_params
-        params.permit()
+        params.permit(:user_id, :construction_id)
     end
 
     def render_not_found
