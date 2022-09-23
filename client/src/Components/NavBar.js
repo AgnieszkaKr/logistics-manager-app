@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
 
 
 function NavBar() {
+  const[loginSignup, setLoginSignup]=useState(false)
+  
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <img src='./Logo_black.png' className="logo-main-page"  alt=''/>
@@ -25,7 +27,7 @@ function NavBar() {
                 <Link className='nav-link' to='/login'>Login</Link>
               </li>
               <li>
-                <Link className='nav-link' to='/'>Logout</Link>
+                <Link className='nav-link' to='/signup'>Signup</Link>
               </li>
             </ul>
           </div>
