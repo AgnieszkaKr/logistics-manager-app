@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
-
+import {logged_out, logged_in} from '../Actions'
+import {useSelector, useDispatch} from 'react-redux'
 
 function NavBar() {
-  const[loginSignup, setLoginSignup]=useState(false)
-  
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(state => state.isLoggedIn)
+  console.log(isLoggedIn)
+
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <img src='./Logo_black.png' className="logo-main-page"  alt=''/>
@@ -26,6 +29,8 @@ function NavBar() {
               <li>
                 <Link className='nav-link' to='/login'>Login</Link>
               </li>
+              <button onClick={() => dispatch(logged_out(), console.log(isLoggedIn))}>log out </button>
+              <button onClick={() => dispatch(logged_in(), console.log(isLoggedIn))}>log in </button>
               <li>
                 <Link className='nav-link' to='/signup'>Signup</Link>
               </li>
