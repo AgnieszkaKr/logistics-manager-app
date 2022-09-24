@@ -1,11 +1,17 @@
 import React from 'react'
+import "./Styling/Signup.css"
+import ReactDOM from 'react-dom'
 
-function Signup() {
-  return (
-        <div className='login-signup-form'>
+function Signup({setSignupWindow}) {
+
+  return ReactDOM.createPortal(
+        <div className='signup-form'>
+          <div className='signup-container'>
+          <button className="close-window" onClick={()=> setSignupWindow(false)}> X</button>
             <form>
                 <div className='container'>
                     <br/>
+                    <img className='logo-signup' src='./Logo.png' alt=''/>
                       <div>
                         <label className="input-lable" type="text">Name</label>
                             <br/>
@@ -43,10 +49,12 @@ function Signup() {
                             <input className="input-field-user" type="passwor" />
                         </div>
                         <br/>
-                        <button className="login-signup-button">Sign up</button>
+                        <button className="signup-button">Sign up</button>
                 </div>
-            </form>   
-        </div>
+            </form> 
+            </div>  
+        </div>,
+        document.getElementById('portal')
   )
 }
 

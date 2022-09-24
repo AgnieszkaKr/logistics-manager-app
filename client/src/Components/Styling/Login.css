@@ -7,10 +7,23 @@
     width: 80%
 }
 
-.login-signup-form{
+.login-form{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 1000;
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.login-container{
+    background-color: rgb(11, 7, 0);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10%
 }
 
 .input-field-user{
@@ -35,24 +48,24 @@
     border-color: rgb(189, 195, 199);
 }
 
-.input-lable{
+.login-lable{
     font-size:10px;
     margin-left: 3%;
+    color:white
 }
 
-.login-signup-button{
+.login-button{
     width: 250px;
     border-radius: 0.5rem;
     outline:none;
     border: none;
-    background-color: black;
-    color: white;
+    color: rgb(21, 21, 21);
     font-size: 12px;
     padding: 5px;
 }
 
-.login-signup-button:hover{
-    background-color:rgb(105,105,105);
+.login-button:hover{
+    background-color:rgb(255, 255, 255);
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -71,4 +84,23 @@
 
 .checkbox-password:checked{
     background-color: black;
+}
+
+.logo-login{
+    width: 60%;
+}
+.input-lable{
+    color: white;
+}
+
+.close-window{
+    background-color: rgba(11, 7, 0);
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    float: right
+}
+.close-window:hover{
+    transform: scale(1.3);
 }

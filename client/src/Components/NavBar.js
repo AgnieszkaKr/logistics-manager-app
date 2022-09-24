@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
 
 
-function NavBar() {
-  const[loginSignup, setLoginSignup]=useState(false)
+function NavBar({setLogWindow, logWindow, setSignupWindow, signupWindow}) {
+
   
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <img src='./Logo_black.png' className="logo-main-page"  alt=''/>
+          <img src='./Logo.png' className="logo-main-page"  alt=''/>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -24,10 +24,10 @@ function NavBar() {
                 <Link className='nav-link' to='/createConstruction'>New Construction Site</Link>
               </li>
               <li>
-                <Link className='nav-link' to='/login'>Login</Link>
+                <Link className='nav-link' onClick={()=> setLogWindow(!logWindow)}>Login</Link>
               </li>
               <li>
-                <Link className='nav-link' to='/signup'>Signup</Link>
+              <Link className='nav-link' onClick={() => setSignupWindow(!signupWindow)}>Signup</Link>
               </li>
             </ul>
           </div>

@@ -1,22 +1,23 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './Styling/Login.css'
-function Login() {
-    const[logIn, setLogIn]=useState(true)
-    const handleLogin = () =>{
+import ReactDOM from 'react-dom'
+function Login({setLogWindow}) {
 
-    }
-    return (
-        <div className='login-signup-form'>
+    return ReactDOM.createPortal(
+        <div className='login-form'>
+            <div className='login-container'>
+            <button className="close-window" onClick={()=> setLogWindow(false)}> X</button>
             <form>
                 <div className='container'>
+                    <img src='./Logo.png' alt='' className="logo-login"/>
                     <br/>
                         <div>
-                        <label className="input-lable" type="email">Email</label>
+                        <label className="login-lable" type="email">Email</label>
                             <br/>
                             <input className="input-field-user" type="email" />
                         </div>
                         <div>
-                        <label className="input-lable" type="password">Password</label>
+                        <label className="login-lable" type="password">Password</label>
                             <br/>
                             <input className="input-field-user" type="passwor" />
                         </div>
@@ -24,12 +25,14 @@ function Login() {
                         <div className="remember-me-field">
                             <br/>
                             <input className="checkbox-passwordr" type="checkbox" />
-                            <label className="input-lable">Remember me</label>
+                            <label className="login-lable">Remember me</label>
                         </div>
-                        <button className="login-signup-button">Log in</button>
+                        <button className="login-button">Log in</button>
                 </div>
-            </form>   
-        </div>
+            </form> 
+            </div>  
+        </div>,
+        document.getElementById('portal')
   )
 }
 

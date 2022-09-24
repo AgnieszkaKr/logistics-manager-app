@@ -1,0 +1,87 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    width: 80%
+}
+
+.signup-form{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.signup-container{
+    background-color: rgb(11, 7, 0);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10%
+    
+}
+
+.input-field-user{
+    border-radius: 0.5rem;
+    border-style: solid;
+    width: 100%;
+    border-color:rgb(191, 191, 191);
+    width: 250px;
+    border-width: 1px;
+    font-size:10px;
+    padding: 5px 0 5px 10px 
+    
+}
+.input-field-user:focus{
+    background-color:rgb(238, 238, 238);
+    border-color: rgb(189, 195, 199);
+    outline:none
+}
+.input-field-user:hover{
+    background-color:rgb(238, 238, 238);
+    border-color: rgb(189, 195, 199);
+}
+
+.input-lable{
+    font-size:10px;
+    margin-left: 3%;
+    color: white;
+}
+
+.signup-button{
+    width: 250px;
+    border-radius: 0.5rem;
+    outline:none;
+    border: none;
+    color: rgb(21, 21, 21);
+    font-size: 12px;
+    padding: 5px;
+}
+
+.signup-button:hover{
+    background-color:rgb(105,105,105);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.remember-me-field{
+    display: flex;
+    align-items: center;
+    width: 245px;
+}
+.checkbox-password{
+    width: 100px;
+    border-radius: 0.5rem;
+    outline:none;
+    border: none;
+}
+
+.logo-signup{
+    width: 60%
+}

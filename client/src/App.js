@@ -1,5 +1,6 @@
 
 import './App.css';
+import React, {useState} from 'react'
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import NavBar from './Components/NavBar'
 import Home from './Components/Home'
@@ -11,13 +12,14 @@ import Signup from './Components/Signup'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-    
+  const [logWindow, setLogWindow]= useState(false)
+  const [signupWindow, setSignupWindow] = useState(false)
   return (
     <div className="">
     
      <Router>
       
-      <NavBar />
+      <NavBar logWindow={logWindow} setLogWindow={setLogWindow} signupWindow={signupWindow} setSignupWindow={setSignupWindow}  />
         <Routes>
         <Route exact key={2} path='/signup' element={<Signup/>}/>
         <Route exact key={2} path='/about' element={<About/>}/>
@@ -27,7 +29,8 @@ function App() {
         </Routes>
       </Router>
       <Footer/>
-
+      {logWindow ? <Login setLogWindow={setLogWindow} /> : null}
+      {signupWindow ? <Signup setSignupWindow={setSignupWindow}/> : null}
 
 
     </div>
