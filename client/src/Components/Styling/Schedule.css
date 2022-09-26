@@ -1,3 +1,6 @@
+.schedule-container{
+   padding: 50%
+}
 .header1-text{
     font-size: 25px;
     color: #90CDF9;
@@ -225,5 +228,9 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     display: inline-block;
     padding-left: 4px;
     padding-right: 4px;
+}
+
+.css-m1a27h{
+    margin: 10%
 }
 

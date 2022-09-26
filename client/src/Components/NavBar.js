@@ -3,8 +3,8 @@ import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
 
 
-function NavBar({setLogWindow, logWindow, setSignupWindow, signupWindow}) {
-
+function NavBar({setLogWindow, logWindow, setSignupWindow, signupWindow, loggedIn, setLoggedIn}) {
+console.log(loggedIn)
   
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,14 +21,26 @@ function NavBar({setLogWindow, logWindow, setSignupWindow, signupWindow}) {
                 <Link className="nav-link" to="/about">About</Link>
               </li>
               <li>
-                <Link className='nav-link' to='/createConstruction'>New Construction Site</Link>
+                {/* if user is logged in can create construction, if not pop up window to sign up/ log in */}
+                {loggedIn ?
+                  (<Link className='nav-link' to='/createConstruction'>New Construction Site</Link> ):
+                  (<Link className='nav-link' onClick={() => setSignupWindow(!signupWindow)}>New Construction Site</Link>)
+                }
+                
               </li>
-              <li>
-                <Link className='nav-link' onClick={()=> setLogWindow(!logWindow)}>Login</Link>
-              </li>
-              <li>
-              <Link className='nav-link' onClick={() => setSignupWindow(!signupWindow)}>Signup</Link>
-              </li>
+              {/* if user is logged in navbar has button logged out if not login/ signup */}
+             {
+              loggedIn ? <Link className='nav-link' onClick={()=> setLoggedIn(!loggedIn)} to="/">Log out</Link> : (
+                <>
+                      <li>
+                          <Link className='nav-link' onClick={()=> setLogWindow(!logWindow)}>Login</Link>
+                      </li>
+                      <li>
+                          <Link className='nav-link' onClick={() => setSignupWindow(!signupWindow)}>Signup</Link>
+                      </li>
+                </> 
+              )
+             }
             </ul>
           </div>
       </nav>

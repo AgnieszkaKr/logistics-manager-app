@@ -1,15 +1,18 @@
 import React from 'react'
 import "./Styling/Signup.css"
 import ReactDOM from 'react-dom'
+import Login from './Login'
 
-function Signup({setSignupWindow}) {
-
+function Signup({setSignupWindow, signupWindow, setLogWindow}) {
+  
   return ReactDOM.createPortal(
         <div className='signup-form'>
           <div className='signup-container'>
           <button className="close-window" onClick={()=> setSignupWindow(false)}> X</button>
             <form>
                 <div className='container'>
+                  <div className="input-lable">Signu up  </div>
+                
                     <br/>
                     <img className='logo-signup' src='./Logo.png' alt=''/>
                       <div>
@@ -50,8 +53,10 @@ function Signup({setSignupWindow}) {
                         </div>
                         <br/>
                         <button className="signup-button">Sign up</button>
-                </div>
-            </form> 
+                </div> 
+            </form>
+            <div className="input-lable">Already a member?</div>
+            <button className="signup-button" onClick={()=> {setSignupWindow(false); setLogWindow(true)}}>Log in</button>
             </div>  
         </div>,
         document.getElementById('portal')
