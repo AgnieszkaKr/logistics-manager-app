@@ -12,8 +12,11 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(permitted_params)
-        render json: user
+        @user = User.new(permitted_params)
+        if @user.save
+            redirect_to root_path
+            
+        render json: @user
     end
 
     def update
