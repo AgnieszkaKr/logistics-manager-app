@@ -2,13 +2,21 @@ class ConstructionsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
     def index
-        constructions = Construction.all
-        render json: constructions
+
     end
 
     def show
-        construction = Construction.find(params[:id])
-        render json: construction
+
+    end
+    def show_constructions
+        id =  session[:user_id]
+        if id 
+            logisticsManager = LogisticsManager.find_by(user_id: id)
+            construction = Construction.find_by(id: logisticsManager.construction_id )
+            render json: construction
+        else 
+            render json: {"error": "Not found "}
+        end
     end
 
     def create

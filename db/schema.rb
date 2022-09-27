@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_175732) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_175406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175732) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "construction_id"
+    t.integer "equipment_id"
     t.integer "user_id"
     t.string "start_time"
     t.string "finish_time"
@@ -56,13 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175732) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer "delivery_id"
-    t.integer "equipment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "last_name"
@@ -70,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175732) do
     t.string "title"
     t.string "email"
     t.string "phone_number"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

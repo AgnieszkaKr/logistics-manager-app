@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-    has_many :contractors
+    has_secure_password
     has_many :logistics_managers
-    has_many :deliveries
+    has_many :constractors
+
 end

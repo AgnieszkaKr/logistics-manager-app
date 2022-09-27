@@ -11,21 +11,9 @@ class EquipmentController < ApplicationController
         render json: eqipment
     end
 
-    def create
-        equipment = Equipment.create!(permitted_params)
-        render json: equipment
-    end
-
-    def update
-        eqipment = Equipment.find(params[:id])
-        updated = eqipment.update(permitted_params)
-        render json: updated
-    end
-
-    def destroy
-        eqipment = Equipment.find(params[:id])
-        eqipment.destroy
-        head :no_content
+    def show_site_equipment
+        equipments = Equipment.where(construction_id: params[:id])
+        render json: equipments 
     end
 
     private 
