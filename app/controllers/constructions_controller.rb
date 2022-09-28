@@ -1,6 +1,7 @@
 class ConstructionsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
+    wrap_parameters format: []
     def index
 
     end
@@ -19,21 +20,16 @@ class ConstructionsController < ApplicationController
         end
     end
 
-    def create
+
+    def create_new_site 
         construction = Construction.create!(permitted_params)
-        render json: construction
+        logistics_manager = LogisticsManager.create!(user_id: session[:user_id], construction_id: construction.id  )     
+        render json: {
+            "construction": construction,
+            "manager": logistics_manager
+        }
+ 
     end
-
-    def update
-        construction = Construction.find(params[:id])
-        construction.update(permitted_params)
-        render json: construction
-    end
-
-    # When user delete account construction is destroyed
-    # def destroy
-
-    # end
 
     private 
 
@@ -51,3 +47,5 @@ class ConstructionsController < ApplicationController
 
 
 end
+
+

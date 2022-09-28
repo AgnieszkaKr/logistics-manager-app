@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
 import './Styling/Login.css'
 import ReactDOM from 'react-dom'
+
+
+
 function Login({setLogWindow, setUserName, setLoggedIn}) {
     const [errorLogIn, setErrorLogIn] = useState(null)
+
+    
     const handleLogIn = async (e) =>{
         e.preventDefault()
         let name = e.target.email.value
@@ -23,10 +28,10 @@ function Login({setLogWindow, setUserName, setLoggedIn}) {
             setLoggedIn(true)
             setUserName(res.response)
             setErrorLogIn(null)
+           
         }else{
             setErrorLogIn(res.error)
-        }})
-      
+        }}) 
   }
 
 

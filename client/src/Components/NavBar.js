@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
 
 
 function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindow, loggedIn, setUserName, setLoggedIn}) {
-
+  // const [userCreatedMessage, setUserCreatedMessage] = useState('')
   const handleLogOut =(e) =>{
     e.preventDefault()
     console.log("log out")
@@ -40,13 +40,13 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
                 
               </li>
               {/* if user is logged in navbar has button logged out if not login/ signup */}
-             {loggedIn ? <Link className='nav-link' onClick={(e)=> handleLogOut(e)} >Log out</Link> : (
+             {loggedIn ? <Link className='nav-link' to='/' onClick={(e)=> handleLogOut(e) } >Log out</Link> : (
                 <>
                       <li>
-                          <Link className='nav-link' onClick={()=> setLogWindow(true)} >Login</Link>
+                          <Link className='nav-link' onClick={()=> setLogWindow(true)}  >Login</Link>
                       </li>
                       <li>
-                          <Link className='nav-link' onClick={() => setSignupWindow(true)}>Signup</Link>
+                          <Link className='nav-link' onClick={() => setSignupWindow(true)} >Signup</Link>
                       </li>
                 </> 
               )

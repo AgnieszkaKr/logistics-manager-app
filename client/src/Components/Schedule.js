@@ -43,8 +43,8 @@ function Schedule() {
 
     const [openSchedule, setOpenSchedule]= useState()
     const [confirmedDeliveries, setConfirmDeliveries] =useState({})
-    let myEvents = confirmedDeliveries.map(element => ({event_id: element.id, title: element.store_place, start: element.start_time, end: element.finish_time})) ?? {"no": "events"}
-    console.log(myEvents) 
+    // let myEvents = confirmedDeliveries.map(element => ({event_id: element.id, title: element.store_place, start: element.start_time, end: element.finish_time})) ?? {"no": "events"}
+    
     return (
     <div className="">
         {equipment.map(element => <button onClick={()=> {setOpenSchedule([element.id, element.name]); setConfirmDeliveries(element.deliveries)}} >{element.name}</button> )}

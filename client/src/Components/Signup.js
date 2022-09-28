@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import "./Styling/Signup.css"
 import ReactDOM from 'react-dom'
 import Login from './Login'
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Signup({setSignupWindow, signupWindow, setLogWindow}) {
+function Signup({setSignupWindow, signupWindow, setLogWindow, setUserCreatedMessage}) {
   const[newUser, setNewUser]=useState({
       name: '', 
       last_name: "", 
@@ -14,7 +14,6 @@ function Signup({setSignupWindow, signupWindow, setLogWindow}) {
       phone_number: "", 
       password: ""
   })
-  console.log(newUser)
   const handleSignup =(e) =>{
     e.preventDefault()
     console.log("signup")
@@ -29,7 +28,7 @@ function Signup({setSignupWindow, signupWindow, setLogWindow}) {
     .then(res =>{
       if(res.ok){
         setSignupWindow(false);
-        <Navigate to='/'/>
+        setLogWindow(true);        
         res.json().then(console.log(res))
       } else {
         res.json().then(e => console.log(Object.entries(e.error).flat()))

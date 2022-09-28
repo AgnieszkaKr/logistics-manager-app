@@ -7,6 +7,7 @@ class CreateConstructions < ActiveRecord::Migration[7.0]
       t.string :address_zip
       t.string :building_name
       t.string :layout_plan
+      t.integer :user_id
 
       t.timestamps
     end
