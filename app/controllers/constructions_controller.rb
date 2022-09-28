@@ -12,8 +12,7 @@ class ConstructionsController < ApplicationController
     def show_constructions
         id =  session[:user_id]
         if id 
-            logisticsManager = LogisticsManager.find_by(user_id: id)
-            construction = Construction.find_by(id: logisticsManager.construction_id )
+            construction = Construction.find_by(user_id: id )
             render json: construction
         else 
             render json: {"error": "Not found "}
@@ -22,16 +21,18 @@ class ConstructionsController < ApplicationController
 
 
     def create_new_site 
+        user = User.find_by(id: session[:user_id])
+        
         construction = Construction.create!(permitted_params)
-        logistics_manager = LogisticsManager.create!(user_id: session[:user_id], construction_id: construction.id  )     
-        render json: {
-            "construction": construction,
-            "manager": logistics_manager
-        }
+        construction.update(user_id: user.id)
+        render json: construction
  
     end
 
     private 
+    def user_id
+
+    end
 
     def permitted_params
         params.permit(:address_city, :address_street, :address_building_number, :address_zip, :building_name, :layout_plan)

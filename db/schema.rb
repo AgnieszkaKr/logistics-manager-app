@@ -21,13 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175406) do
     t.string "address_zip"
     t.string "building_name"
     t.string "layout_plan"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "contractors", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "construction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,13 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175406) do
 
   create_table "equipment", force: :cascade do |t|
     t.string "name"
-    t.integer "construction_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "logistics_managers", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "construction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

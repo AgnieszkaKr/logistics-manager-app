@@ -1,7 +1,6 @@
 Construction.destroy_all
 User.destroy_all
-LogisticsManager.destroy_all
-Contractor.destroy_all
+
 Equipment.destroy_all
 Delivery.destroy_all
 
@@ -15,17 +14,8 @@ user3 = User.create!(name: Faker::Name.unique.first_name, last_name: Faker::Name
 user4 = User.create!(name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name , company: Faker::Company.name , title: "Engineer", email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, password:"789")
 user5 = User.create!(name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name , company: Faker::Company.name , title: "Engineer", email: Faker::Internet.email, phone_number: Faker::PhoneNumber.cell_phone, password:"101")
 
-construction1 = Construction.create(address_city: Faker::Address.city, address_street: Faker::Address.street_address, address_building_number: Faker::Address.building_number, address_zip: Faker::Address.zip, building_name: Faker::Company.name, layout_plan: './layout_plan1.jpg')
-construction2 = Construction.create(address_city: Faker::Address.city, address_street: Faker::Address.street_address, address_building_number: Faker::Address.building_number, address_zip: Faker::Address.zip, building_name: Faker::Company.name, layout_plan: './layout_plan1.jpg')
-
-
-logisticsEngineer1= LogisticsManager.create!(user_id: user1.id, construction_id: construction1.id)
-logisticsEngineer2= LogisticsManager.create!(user_id: user2.id, construction_id: construction1.id)
-
-
-contractor1= Contractor.create!(user_id: user3.id, construction_id: construction1.id)
-contractor2 = Contractor.create!(user_id: user4.id, construction_id: construction1.id)
-contractor3 = Contractor.create!(user_id: user5.id, construction_id: construction1.id)
+construction1 = Construction.create(address_city: Faker::Address.city, address_street: Faker::Address.street_address, address_building_number: Faker::Address.building_number, address_zip: Faker::Address.zip, building_name: Faker::Company.name, layout_plan: './layout_plan1.jpg', user_id:user2.id )
+construction2 = Construction.create(address_city: Faker::Address.city, address_street: Faker::Address.street_address, address_building_number: Faker::Address.building_number, address_zip: Faker::Address.zip, building_name: Faker::Company.name, layout_plan: './layout_plan1.jpg', user_id: user1.id)
 
 equipment1= Equipment.create!(name: "Gate 1", construction_id: construction1.id)
 equipment2= Equipment.create!(name: "Gate 2", construction_id: construction1.id)

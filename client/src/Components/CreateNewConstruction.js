@@ -14,6 +14,8 @@ function CreatenewSite() {
   })
 
     const createNewSite =(e) =>{
+        setErrors('')
+        console.log(newSite)
         e.preventDefault()
         console.log('created')
         fetch('/newSite',{
@@ -27,25 +29,20 @@ function CreatenewSite() {
         if(res.ok){
             res.json().then(console.log)
         } else {
-            res.json().then(e => console.log(e.errors))
+            res.json().then(e => setErrors(e.errors))
+            
         }
         })
-        console.log(errors)
+        console.log(errors);
         
-        setNewSite({
-            address_city: "",
-            address_street:"",
-            address_building_number:"",
-            address_zip:"",
-            building_name:"",
-            layout_plan:"",
-        });
         <Navigate to='/myConstructions'/>
+
     }
     
     return (
     <div className='login-signup-form'>
       <div>Create new construction site </div>
+      {errors ? (errors.map(e => <div>{e}</div>)): null}
             <form onSubmit={(e)=> createNewSite(e)}>
                 <div className='container'>
                     <br/>
