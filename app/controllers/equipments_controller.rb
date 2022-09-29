@@ -1,4 +1,4 @@
-class EquipmentController < ApplicationController
+class EquipmentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
 
@@ -12,8 +12,16 @@ class EquipmentController < ApplicationController
     end
 
     def show_site_equipment
-        equipments = Equipment.where(construction_id: params[:id])
-        render json: equipments 
+        render json: Equipment.where(construction_id: params[:id])
+    end
+
+    def create
+        construction = Construction.find_by(id: params[:construction_id])
+        equipment = Equipment.create!(permitted_params)
+        render json: {
+            equipment: equipment, 
+            construction: construction
+        }
     end
 
     private 

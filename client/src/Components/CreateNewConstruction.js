@@ -1,20 +1,21 @@
 import React, {useState} from 'react'
 import './Styling/CreateNewConstruction.css'
- import { Navigate } from 'react-router'
+import { useNavigate} from 'react-router-dom';
 
 function CreatenewSite() {
-    const[errors, setErrors]=useState()
-  const [newSite, setNewSite]= useState({
-    address_city: "",
-    address_street:"",
-    address_building_number:"",
-    address_zip:"",
-    building_name:"",
-    layout_plan:"",
-  })
+    const navigate = useNavigate();
+    const[responseNewSite, setResponseNewSite]=useState([])
+    const [newSite, setNewSite]= useState({
+        address_city: "",
+        address_street:"",
+        address_building_number:"",
+        address_zip:"",
+        building_name:"",
+        layout_plan:"",
+    })
 
     const createNewSite =(e) =>{
-        setErrors('')
+        setResponseNewSite(false)
         console.log(newSite)
         e.preventDefault()
         console.log('created')
@@ -27,22 +28,28 @@ function CreatenewSite() {
         })
         .then(res =>{
         if(res.ok){
-            res.json().then(console.log)
+            res.json().then(console.log);
+            navigate('/myConstructions')
+            setNewSite({
+                address_city: "",
+                address_street:"",
+                address_building_number:"",
+                address_zip:"",
+                building_name:"",
+                layout_plan:"",
+            })
         } else {
-            res.json().then(e => setErrors(e.errors))
+            res.json().then(e => setResponseNewSite(e.errors))
             
         }
         })
-        console.log(errors);
-        
-        <Navigate to='/myConstructions'/>
-
+        console.log(responseNewSite);
     }
     
     return (
     <div className='login-signup-form'>
       <div>Create new construction site </div>
-      {errors ? (errors.map(e => <div>{e}</div>)): null}
+      { responseNewSite ? responseNewSite.map(e => <div className='errors-new-construction'>{e}</div>) : null}
             <form onSubmit={(e)=> createNewSite(e)}>
                 <div className='container'>
                     <br/>

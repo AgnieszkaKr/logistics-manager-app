@@ -11,6 +11,7 @@ import Login from './Components/Login'
 import Signup from './Components/Signup'
 import Schedule from './Components/Schedule'
 import MyConstructions from './Components/MyConstructions'
+import NewEquipment from './Components/NewEquipment'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -27,10 +28,13 @@ function App() {
       useEffect(() => {
       fetch("/me")
       .then(res => res.json()
-      .then(req => {if(req.user  !== undefined){
+      .then(req => {if(req.user  !== false){
         setLoggedIn(true)
         setUserName(req.user)
-      }}));
+      } else{
+
+      }
+    }));
      }, []);
       console.log(loggedIn, userName)
       console.log(currentSite)
@@ -43,6 +47,7 @@ function App() {
         <Routes>
           myConstructions
         <Route exact key={4} path='/myConstructions' element={<MyConstructions setCurrentSite={setCurrentSite}/>}/>
+        <Route exact key={4} path='/newequipment' element={<NewEquipment/>}/>
         <Route exact key={4} path='/schedule' element={<Schedule/>}/>
         <Route exact key={2} path='/signup' element={<Signup/>}/>
         <Route exact key={2} path='/about' element={<About />}/>

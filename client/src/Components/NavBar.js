@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom';
 
 
 function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindow, loggedIn, setUserName, setLoggedIn}) {
+  const navigate = useNavigate()
   // const [userCreatedMessage, setUserCreatedMessage] = useState('')
   const handleLogOut =(e) =>{
     e.preventDefault()
@@ -14,6 +16,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
     .then(req => req.json)
     .then(res => console.log(res.error))
     setLoggedIn(false)
+    navigate('/')
   }
   
   return (
@@ -40,7 +43,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
                 
               </li>
               {/* if user is logged in navbar has button logged out if not login/ signup */}
-             {loggedIn ? <Link className='nav-link' to='/' onClick={(e)=> handleLogOut(e) } >Log out</Link> : (
+             {loggedIn ? <Link className='nav-link'  onClick={(e)=> handleLogOut(e) } >Log out</Link> : (
                 <>
                       <li>
                           <Link className='nav-link' onClick={()=> setLogWindow(true)}  >Login</Link>

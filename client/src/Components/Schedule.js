@@ -1,24 +1,56 @@
 import React, {useState, useEffect} from 'react'
 import { Scheduler } from "@aldabil/react-scheduler";
 import './Styling/Schedule.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 function Schedule() {
-    const[equipment, setEquipment] = useState([])
-    const[deliveries, setDeliveries]= useState()
+    const[equipment, setEquipment] = useState([{id: "loading...", name: "loading...", deliveries: "loading..."}])
+    const[updateEquipment, setUpdateEquipment]=useState(false)
+    // let siteEquipment = equipment ?? [{id: "loading...", name: "loading...", deliveries: "loading..."}]
+    const[errors, setErrors]=useState([])
+    const [openSchedule, setOpenSchedule]= useState([])
+    const[newEquipmentName, setNewEquipmentName] = useState("")
+    // const[deliveries, setDeliveries]= useState()
     // send request for all schedules, I loop over and generate buttons
-    // when I cick on the button I return false to any otgher gates and true to choosen gate
+    // when I click on the button I return false to any otgher gates and true to choosen gate
     const location = useLocation()
     // construction id:
-    const {id} = location.state
+    const {id , name} = location.state
+    console.log("id", id, "name",name)
     useEffect(() =>{
         fetch(`/equipment/site/${id}`)
-        .then(req => req.json())
-        .then(res => {
-            setEquipment(res)
+        .then(res =>{
+        if(res.ok){
+            res.json()
+            .then(e => setEquipment(e));
+        } else {
+            res.json().then(e => setErrors(e.errors))}
         })
+        console.log(equipment)
     },[])
-    
+
+        console.log("equipment", equipment)
+        console.log("errors equipment", errors)
+        console.log(equipment)
+    console.log(newEquipmentName)
+    const confirmupdateEquipment =()=>{
+        let id = openSchedule[0]
+        // console.log(id)
+        // fetch(`/equipments/${id}`,{
+        // method:"PATCH",
+        // headers:{'Content-Type':'application/json'},
+        // body: JSON.stringify({name: })
+        // })
+        // .then(res =>{
+        // if(res.ok){
+        // res.json().then(console.log(res))
+        // } else {
+        // res.json().then(e => console.log(Object.entries(e.error).flat()))
+        // }})
+        setUpdateEquipment(false)
+        newEquipmentName("") 
+
+    }
 
     const handleConfirm = (event, action) => {
     console.log(event, action);
@@ -41,21 +73,36 @@ function Schedule() {
     }
     };
 
-    const [openSchedule, setOpenSchedule]= useState()
+    
     const [confirmedDeliveries, setConfirmDeliveries] =useState({})
     // let myEvents = confirmedDeliveries.map(element => ({event_id: element.id, title: element.store_place, start: element.start_time, end: element.finish_time})) ?? {"no": "events"}
     
     return (
-    <div className="">
-        {equipment.map(element => <button onClick={()=> {setOpenSchedule([element.id, element.name]); setConfirmDeliveries(element.deliveries)}} >{element.name}</button> )}
-        {openSchedule ? (<div>Schedule number {openSchedule[1]}
-            <Scheduler
-            
-            view="month"
-            onConfirm={handleConfirm}
-            />
-        </div>) :  null}
+    <div className="container">
+            <Link to="/newequipment" state={{site_id: id, name: name}}>
+                <button >Add new equipment</button>
+            </Link> 
 
+
+        
+    {equipment.map(element =>  <button onClick={()=> {setOpenSchedule([element.id, element.name]); setConfirmDeliveries(element.deliveries)}} >{element.name}</button>)}
+        
+
+    {(openSchedule.length > 0 ? 
+        (<div>Schedule number {openSchedule[1]} 
+        <button onClick={()=>setUpdateEquipment(!updateEquipment)}> update equipment </button>
+        {updateEquipment ? (
+            <div> Update name: 
+                <div>{openSchedule[1]}</div>
+                <input onChange={e => setNewEquipmentName(e.target.value)}/>
+                <button onClick={(openSchedule)=>confirmupdateEquipment(openSchedule)}>Confirm</button>
+            </div>
+        ) : null}
+        <Scheduler
+            // view="month"
+            onConfirm={handleConfirm}
+        />
+        </div>):(<> <br/><div>which schedule you want to display or create new delivery or add descrition</div></>))}
     </div>
   )
 }

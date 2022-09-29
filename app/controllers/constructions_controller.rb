@@ -12,7 +12,7 @@ class ConstructionsController < ApplicationController
     def show_constructions
         id =  session[:user_id]
         if id 
-            construction = Construction.find_by(user_id: id )
+            construction = Construction.where(user_id: id )
             render json: construction
         else 
             render json: {"error": "Not found "}

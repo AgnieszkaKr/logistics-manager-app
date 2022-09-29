@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/constructions', to: 'constructions#show_constructions'
-  get '/equipment/site/:id', to: 'equipment#show_site_equipment'
+  get '/equipment/site/:id', to: 'equipments#show_site_equipment'
   post '/newSite', to: 'constructions#create_new_site'
+  post '/equipments', to: 'equipments#create'
 
 end
