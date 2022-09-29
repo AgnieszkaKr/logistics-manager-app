@@ -31,8 +31,8 @@ function Schedule() {
 
         console.log("equipment", equipment)
         console.log("errors equipment", errors)
-        console.log(equipment)
-    console.log(newEquipmentName)
+        console.log(openSchedule)
+    
     const confirmupdateEquipment =()=>{
         let id = openSchedule[0]
         // console.log(id)
@@ -46,16 +46,21 @@ function Schedule() {
         // res.json().then(console.log(res))
         // } else {
         // res.json().then(e => console.log(Object.entries(e.error).flat()))
-        // }})
-        setUpdateEquipment(false)
-        newEquipmentName("") 
-
+        // }}) 
     }
 
     const handleConfirm = (event, action) => {
     console.log(event, action);
     if (action === "edit") {
       /** PUT event to remote DB */
+
+    //    
+      console.log("edit", {
+         event_id: event.id,
+        title: event.tutle,
+        start: event.start,
+        end: event.end
+      })
        return{
         event_id: event.id,
         title: event.tutle,
@@ -64,6 +69,12 @@ function Schedule() {
       }
     } else if (action === "create") {
       /**POST event to remote DB */
+      console.log("create", {
+        event_id: event.id,
+        title: event.tutle,
+        start: event.start,
+        end: event.end
+      })
       return{
         event_id: event.id,
         title: event.tutle,
@@ -78,24 +89,28 @@ function Schedule() {
     // let myEvents = confirmedDeliveries.map(element => ({event_id: element.id, title: element.store_place, start: element.start_time, end: element.finish_time})) ?? {"no": "events"}
     
     return (
-    <div className="container">
+    <div className="container-schedule">
             <Link to="/newequipment" state={{site_id: id, name: name}}>
                 <button >Add new equipment</button>
             </Link> 
 
 
         
-    {equipment.map(element =>  <button onClick={()=> {setOpenSchedule([element.id, element.name]); setConfirmDeliveries(element.deliveries)}} >{element.name}</button>)}
-        
-
+    {equipment.map(element => <button onClick={() => {
+        console.log(element)
+        setOpenSchedule([element.id, element.name]); 
+        setConfirmDeliveries(element.deliveries) }}>{element.name}</button>)}
+     
     {(openSchedule.length > 0 ? 
         (<div>Schedule number {openSchedule[1]} 
+        <br/>
         <button onClick={()=>setUpdateEquipment(!updateEquipment)}> update equipment </button>
         {updateEquipment ? (
-            <div> Update name: 
+            <div> Update information: 
+
                 <div>{openSchedule[1]}</div>
-                <input onChange={e => setNewEquipmentName(e.target.value)}/>
-                <button onClick={(openSchedule)=>confirmupdateEquipment(openSchedule)}>Confirm</button>
+                <input />
+                <button >Confirm</button>
             </div>
         ) : null}
         <Scheduler
