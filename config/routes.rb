@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get '/equipment/site/:id', to: 'equipments#show_site_equipment'
   post '/newSite', to: 'constructions#create_new_site'
   post '/equipments', to: 'equipments#create'
+  get 'equipments/:id', to: 'equipments#show'
 
 end

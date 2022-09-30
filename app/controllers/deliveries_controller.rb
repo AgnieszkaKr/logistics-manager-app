@@ -12,7 +12,10 @@ class DeliveriesController < ApplicationController
     end
 
     def create
-        delivery = Delivery.create!(permitted_params)
+        id = session[:user_id]
+        delivery = Delivery.new(permitted_params)
+        delivery.update(user_id: id)
+        delivery.save()
         render json: delivery
     end
 
@@ -31,7 +34,7 @@ class DeliveriesController < ApplicationController
     private 
 
     def permitted_params
-        params.permit(:construction_id, :user_id, :start_time, :finish_time, :store_place )
+        params.permit(:start_time, :finish_time, :title, :equipment_id)
     end
 
     def render_not_found

@@ -235,11 +235,14 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     width: 100%
 }
 .container-schedule{
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    width: 100%
+    
+}
+
+.equipment-button:focus{
+    background:red
 }
 

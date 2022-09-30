@@ -6,13 +6,11 @@ import { useLocation, Link } from 'react-router-dom'
 function Schedule() {
     const[equipment, setEquipment] = useState([{id: "loading...", name: "loading...", deliveries: "loading..."}])
     const[updateEquipment, setUpdateEquipment]=useState(false)
-    // let siteEquipment = equipment ?? [{id: "loading...", name: "loading...", deliveries: "loading..."}]
     const[errors, setErrors]=useState([])
-    const [openSchedule, setOpenSchedule]= useState([])
-    const[newEquipmentName, setNewEquipmentName] = useState("")
-    // const[deliveries, setDeliveries]= useState()
+    const[openSchedule, setOpenSchedule]= useState([])
+    const[deliveries, setDeliveries] =useState([])
     // send request for all schedules, I loop over and generate buttons
-    // when I click on the button I return false to any otgher gates and true to choosen gate
+    // when I click on the button I return false to any other gates and true to choosen gate
     const location = useLocation()
     // construction id:
     const {id , name} = location.state
@@ -32,7 +30,7 @@ function Schedule() {
         console.log("equipment", equipment)
         console.log("errors equipment", errors)
         console.log(openSchedule)
-    
+    const[newDeliveryRes, setNewDeliveryRes]=useState()
     const confirmupdateEquipment =()=>{
         let id = openSchedule[0]
         // console.log(id)
@@ -50,54 +48,83 @@ function Schedule() {
     }
 
     const handleConfirm = (event, action) => {
-    console.log(event, action);
     if (action === "edit") {
       /** PUT event to remote DB */
-
-    //    
+    
       console.log("edit", {
          event_id: event.id,
-        title: event.tutle,
+        title: event.title,
         start: event.start,
         end: event.end
       })
        return{
         event_id: event.id,
-        title: event.tutle,
+        title: event.title,
         start: event.start,
         end: event.end
       }
     } else if (action === "create") {
       /**POST event to remote DB */
-      console.log("create", {
-        event_id: event.id,
-        title: event.tutle,
-        start: event.start,
-        end: event.end
-      })
-      return{
-        event_id: event.id,
-        title: event.tutle,
-        start: event.start,
-        end: event.end
-      }
+        let newDelivery = {
+            equipment_id: openSchedule[0],
+            title: event.title,
+            start_time: event.start,
+            finish_time: event.end
+        }
+        fetch('/deliveries',{
+        method:"POST",
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(newDelivery)
+        })
+        .then(res =>{
+        if(res.ok){
+            res.json().then(setNewDeliveryRes({
+                event_id: res.id,
+                title: res.title,
+                start: new Date(res.start_time),
+                end: new Date(res.finish_time),
+                admin_id: 1,
+                color: "green"
+            }));
+        } else {
+            res.json().then(e =>console.log(e.errors))  
+        }
+        // return doesnt work 
+        console.log(newDelivery)
+
+       })
+
     }
     };
-
-    
     const [confirmedDeliveries, setConfirmDeliveries] =useState({})
-    // let myEvents = confirmedDeliveries.map(element => ({event_id: element.id, title: element.store_place, start: element.start_time, end: element.finish_time})) ?? {"no": "events"}
-    
+    const deliveryTransformed = deliveries.map(d=>  ({
+                                    event_id: d.id,
+                                    title: d.title,
+                                    start: new Date(d.start_time),
+                                    end: new Date(d.finish_time),
+                                    color: "green"
+                                } ))
+    console.log(deliveryTransformed)
+
+
+
+
     return (
-    <div className="container-schedule">
+    <div className="">
             <Link to="/newequipment" state={{site_id: id, name: name}}>
                 <button >Add new equipment</button>
             </Link> 
-
-
-        
-    {equipment.map(element => <button onClick={() => {
-        console.log(element)
+    {equipment.map(element => <button className='equipment-button' onClick={() => {
+        setDeliveries(element.deliveries)
+        let deliveryTransformed = deliveries.map(d=>  ({
+                                    event_id: d.id,
+                                    title: d.title,
+                                    start: new Date(d.start_time),
+                                    end: new Date(d.finish_time),
+                                    color: "green"
+                                }))
         setOpenSchedule([element.id, element.name]); 
         setConfirmDeliveries(element.deliveries) }}>{element.name}</button>)}
      
@@ -113,8 +140,10 @@ function Schedule() {
                 <button >Confirm</button>
             </div>
         ) : null}
+    
         <Scheduler
-            // view="month"
+        view="day"
+            events={deliveryTransformed}
             onConfirm={handleConfirm}
         />
         </div>):(<> <br/><div>which schedule you want to display or create new delivery or add descrition</div></>))}

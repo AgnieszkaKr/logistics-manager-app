@@ -29,9 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_175406) do
   create_table "deliveries", force: :cascade do |t|
     t.integer "equipment_id"
     t.integer "user_id"
+    t.string "title"
     t.string "start_time"
     t.string "finish_time"
-    t.string "store_place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
