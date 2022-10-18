@@ -1,0 +1,15 @@
+.container-home{
+    display: flex;
+    width: 100%;
+    margin-top: 3%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.picture-home{
+    width: 45%
+}
+
+.title-home{
+    width: 45%
+}

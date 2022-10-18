@@ -12,7 +12,8 @@ import Signup from './Components/Signup'
 import Schedule from './Components/Schedule'
 import MyConstructions from './Components/MyConstructions'
 import NewEquipment from './Components/NewEquipment'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
 
 function App() {
   // true open login window
@@ -39,7 +40,7 @@ function App() {
       console.log(loggedIn, userName)
       console.log(currentSite)
   return (
-    <div className="">
+    <div className="container-main-page">
     
      <Router>
       

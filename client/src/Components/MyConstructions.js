@@ -16,7 +16,7 @@ function MyConstructions({setCurrentSite}) {
     <div className='sites-manager-container'>
         <div>MyConstructions</div>
         {mySites.length === 0 ?<div>It seems that you don't have acces to any sites.Create one or ask for invitation.</div> :(mySites.map(b => 
-        <div className="user-sites">
+        <div className="user-sites" key={b.id}>
             <div>{b.building_name}</div>
             <div>Address: </div>
             <div>{b.address_building_number}</div>

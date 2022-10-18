@@ -1,3 +1,3 @@
 class DeliverySerializer < ActiveModel::Serializer
-  attributes :equipment_id, :finish_time, :start_time, :title
+  attributes :id, :equipment_id, :finish_time, :start_time, :title
 end

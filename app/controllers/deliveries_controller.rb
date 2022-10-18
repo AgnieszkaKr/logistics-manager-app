@@ -10,7 +10,7 @@ class DeliveriesController < ApplicationController
         delivery = Delivery.find(params[:id])
         render json: delivery
     end
-
+    # use
     def create
         id = session[:user_id]
         delivery = Delivery.new(permitted_params)
@@ -18,13 +18,13 @@ class DeliveriesController < ApplicationController
         delivery.save()
         render json: delivery
     end
-
+    # use
     def update
         delivery = Delivery.find(params[:id])
         updated = delivery.update(permitted_params)
         render json: updated
     end
-
+    # use
     def destroy
         delivery = Delivery.find(params[:id])
         delivery.destroy

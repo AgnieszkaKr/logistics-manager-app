@@ -20,19 +20,16 @@ class ConstructionsController < ApplicationController
     end
 
 
-    def create_new_site 
+    def create
         user = User.find_by(id: session[:user_id])
-        
         construction = Construction.create!(permitted_params)
         construction.update(user_id: user.id)
-        render json: construction
+        render json: construction, status: :ok
  
     end
 
     private 
-    def user_id
 
-    end
 
     def permitted_params
         params.permit(:address_city, :address_street, :address_building_number, :address_zip, :building_name, :layout_plan)

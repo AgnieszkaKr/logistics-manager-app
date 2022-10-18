@@ -1,3 +1,35 @@
+.schedule-dashboard{
+    margin: 2%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.equipment-button{
+    margin: 1%;
+}
+
+.equipment-button:focus{
+    background:red
+}
+.equipment-button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%
+}
+.access-points-buttons{
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+}
+.schedule-open-container{
+   width: 90%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+}
+
 .schedule-container{
    padding: 50%
 }
@@ -242,7 +274,4 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     
 }
 
-.equipment-button:focus{
-    background:red
-}
 
