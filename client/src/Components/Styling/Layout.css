@@ -1,0 +1,25 @@
+.portal-container{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.layout-plan-img{
+
+    max-height: 38vw;
+}
+.close-layout-button{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}

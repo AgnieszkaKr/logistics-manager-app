@@ -13,14 +13,14 @@ class DeliveriesController < ApplicationController
     # use
     def create
         id = session[:user_id]
-        delivery = Delivery.new(permitted_params)
+        delivery = Delivery.create!(permitted_params)
         delivery.update(user_id: id)
-        delivery.save()
         render json: delivery, status: :ok
     end
     # use
     def update
-        delivery = Delivery.find(params[:id]).update(permitted_params)
+        delivery = Delivery.find_by(id: params[:id])
+        delivery.update!(permitted_params)
         render json: delivery, status: :ok
     end
     # use

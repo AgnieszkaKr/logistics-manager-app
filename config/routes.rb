@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :deliveries
+  
   resources :equipment
   resources :contractors
   resources :logistics_managers
@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/constructions', to: 'constructions#show'
+  get '/constructions/:id', to: 'constructions#index'
   post '/newSite', to: 'constructions#create'
   get '/equipment/site/:id', to: 'equipments#show_site_equipment'
   post '/equipments', to: 'equipments#create'
-  get 'equipments/:id', to: 'equipments#show'
+  get '/equipments/:id', to: 'equipments#show'
   delete '/deliveries/:id', to: 'deliveries#destroy' 
   patch '/deliveries/:id', to: 'deliveries#update' 
+  post '/deliveries', to: 'deliveries#create'
 end

@@ -52,9 +52,10 @@ function App() {
         <Route exact key={4} path='/schedule' element={<Schedule/>}/>
         <Route exact key={2} path='/signup' element={<Signup/>}/>
         <Route exact key={2} path='/about' element={<About />}/>
-        <Route exact key={1} path='/login' element={<Login/>}/>
+       
         <Route exac key={3} path='/createConstruction' element={<CreateNewConstruction loggedIn={loggedIn} setSignupWindow={setSignupWindow} signupWindow={signupWindow}/>} />
         <Route exact key={1} path='/' element={<Home/>}/>
+
         </Routes>
       </Router>
       <Footer/>

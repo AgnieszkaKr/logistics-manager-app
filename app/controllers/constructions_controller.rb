@@ -2,13 +2,7 @@ class ConstructionsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
     wrap_parameters format: []
-    def index
-
-    end
-
-    def show
-
-    end
+ 
     def show
         id =  session[:user_id]
         if id 
@@ -17,6 +11,11 @@ class ConstructionsController < ApplicationController
         else 
             render json: {"error": "Not found "}
         end
+    end
+
+    def index
+        site = Construction.find_by(id: params[:id])
+        render json: site, status: :ok
     end
 
 
