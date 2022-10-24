@@ -9,11 +9,11 @@ class ConstructionsController < ApplicationController
     def show
 
     end
-    def show_constructions
+    def show
         id =  session[:user_id]
         if id 
             construction = Construction.where(user_id: id )
-            render json: construction
+            render json: construction; 
         else 
             render json: {"error": "Not found "}
         end

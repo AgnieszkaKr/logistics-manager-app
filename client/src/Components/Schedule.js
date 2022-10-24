@@ -37,7 +37,7 @@ function Schedule() {
     // FOR CONSIDERation ??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????/
     // Diffrent color for the owner
    
-    // Create new delivery
+    // Create new delivery works, edit doen't work ////////////////////////////////////////////////////////
     const handleConfirm = (event, action) => {
         console.log(event, action)
         if (action === "edit") {
@@ -100,7 +100,7 @@ function Schedule() {
             return deletedId
     }
     const [confirmedDeliveries, setConfirmDeliveries] =useState({})
-    const deliveryTransformed = deliveries.map(d=>  ({
+    let deliveryTransformed = deliveries.map(d=>  ({
                                     event_id: d.id,
                                     title: d.title,
                                     start: new Date(d.start_time),
@@ -108,15 +108,43 @@ function Schedule() {
                                     color: "green"
                                 } ))
     console.log(deliveryTransformed)
-
+    // update drope works
     const updatedEvent = (time, updated) =>{
-        console.log("time", time, "updated", updated)
-        // return{
-        //             event_id: event.id,
-        //             title: event.title,
-        //             start: new Date(event.start),
-        //             end: new Date(event.end)}
-        }
+        console.log("time", time)
+        console.log("updated", updated)
+        console.log(deliveryTransformed)
+        console.log(deliveries)
+        let id = updated.event_id
+        // change deliveryTransformed and return it at the end
+        deliveryTransformed = deliveryTransformed.map(delivery => {
+            if( delivery.event_id === updated.event_id){
+                console.log(delivery)
+                delivery.start = updated.start
+                delivery.end = updated.end
+                return delivery
+            }else {
+                return delivery
+            }
+        })
+        console.log(deliveryTransformed)
+
+        // send fetch request patch 
+        fetch(`/deliveries/${id}`,{
+                method:"PATCH",
+                headers:{ 'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    finish_time: updated.end,
+                    start_time: updated.start
+                })})
+                .then(res =>{
+                    if(res.ok){
+                        res.json().then(console.log);
+                    } else {
+                        res.json().then(e =>console.log(e.errors))
+                    }})
+
+     return deliveryTransformed
+}
     
 
 
@@ -161,17 +189,17 @@ function Schedule() {
                         events={deliveryTransformed}
                         onConfirm={handleConfirm}
                         onDelete={handleDelete}
-                        // onEventDrop={updatedEvent}
+                        onEventDrop={updatedEvent}
                         month={{
                               weekDays: [0, 1, 2, 3, 4, 5, 6],
                               weekStartOn: 1,
-                              startHour: 6,
+                              startHour: 5,
                               endHour: 24,
                               step: 60,
                             }}
                         day={{
-                          startHour: 6,
-                          endHour: 14,
+                          startHour: 5,
+                          endHour: 24,
                           step: 60,
                          
                         }}

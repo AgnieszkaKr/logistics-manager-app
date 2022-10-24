@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         if user
-        render json: { "user": session[:user_id]}
+        render json: { "user": session[:user_id]}, status: :ok
         else
         render json: { error: session[:user_id] }, status: :unauthorized
         end
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
         user = User.new(permitted_params)
         if user.save
             session[:user_id] = user.id
-            render json: {"info": user}
+            render json: {"info": user}, status: :ok
         end
     end
 
     def update
         user = User.find(params[:id])
         user.update(permitted_params)
-        render json: user
+        render json: user, status: :ok
     end
 
     def destroy

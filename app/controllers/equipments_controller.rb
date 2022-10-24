@@ -8,11 +8,11 @@ class EquipmentsController < ApplicationController
 
     def show
         eqipment = Equipment.find(params[:id])
-        render json: eqipment
+        render json: eqipment, status: :ok
     end
 
     def show_site_equipment
-        render json: Equipment.where(construction_id: params[:id])
+        render json: Equipment.where(construction_id: params[:id]), status: :ok
     end
 
     def create
@@ -21,7 +21,7 @@ class EquipmentsController < ApplicationController
         render json: {
             equipment: equipment, 
             construction: construction
-        }
+        }, status: :ok
     end
 
     private 

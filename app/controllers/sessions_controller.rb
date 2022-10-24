@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: user_params[:email])
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
-      render json: { "response": session[:user_id]}
+      render json: { "response": session[:user_id]}, status: :ok
     else 
       render json: {"error": "Password or email is not valid. Please, try again."}, status: :unauthorized
     end
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
       render json: {"response": session[:user_id]}
       reset_session
-      
+      head :no_content
   end 
 
   private 

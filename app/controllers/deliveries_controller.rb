@@ -8,7 +8,7 @@ class DeliveriesController < ApplicationController
 
     def show
         delivery = Delivery.find(params[:id])
-        render json: delivery
+        render json: delivery, status: :ok
     end
     # use
     def create
@@ -16,13 +16,12 @@ class DeliveriesController < ApplicationController
         delivery = Delivery.new(permitted_params)
         delivery.update(user_id: id)
         delivery.save()
-        render json: delivery
+        render json: delivery, status: :ok
     end
     # use
     def update
-        delivery = Delivery.find(params[:id])
-        updated = delivery.update(permitted_params)
-        render json: updated
+        delivery = Delivery.find(params[:id]).update(permitted_params)
+        render json: delivery, status: :ok
     end
     # use
     def destroy
@@ -34,7 +33,7 @@ class DeliveriesController < ApplicationController
     private 
 
     def permitted_params
-        params.permit(:start_time, :finish_time, :title, :equipment_id)
+        params.permit(:id, :start_time, :finish_time, :title, :equipment_id)
     end
 
     def render_not_found
