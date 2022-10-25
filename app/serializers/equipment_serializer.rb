@@ -1,5 +1,5 @@
 class EquipmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :construction_id
+  attributes :id, :name, :site_id
 
   has_many :deliveries
 end

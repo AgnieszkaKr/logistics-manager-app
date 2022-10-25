@@ -1,6 +1,6 @@
 class Equipment < ApplicationRecord
     validates :name, presence: true
-    validates :construction_id, presence: true
-    belongs_to :construction
+    validates :site_id, presence: true
+    belongs_to :site
     has_many :deliveries
 end

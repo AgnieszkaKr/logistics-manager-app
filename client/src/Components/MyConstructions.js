@@ -6,7 +6,7 @@ function MyConstructions({setCurrentSite}) {
     
     const [mySites, setMyySites] = useState([])
     useEffect(() =>{
-        fetch('/constructions')
+        fetch('/sites')
         .then(req => req.json())
         .then(res => setMyySites(res))
     },[])

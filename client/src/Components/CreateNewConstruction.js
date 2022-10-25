@@ -19,7 +19,7 @@ function CreatenewSite() {
         console.log(newSite)
         e.preventDefault()
         console.log('created')
-        fetch('/newSite',{
+        fetch('/sites',{
         method:"POST",
         headers:{
             'Content-Type':'application/json',

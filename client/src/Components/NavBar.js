@@ -35,7 +35,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
               <li className="nav-item">
                 <Link className="nav-link" to="/about" userName={userName}>About</Link>
               </li>
-                {/* if user is logged in can create construction, if not pop up window to sign up/ log in */}
+                {/* if user is logged in can create site, if not pop up window to sign up/ log in */}
                 {loggedIn ?
                   (<><li><Link className='nav-link' to='/createConstruction'>New Site</Link></li>
                   <li><Link className='nav-link' to='/myConstructions'>My Sites</Link></li></> ):

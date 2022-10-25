@@ -12,22 +12,22 @@ class EquipmentsController < ApplicationController
     end
 
     def show_site_equipment
-        render json: Equipment.where(construction_id: params[:id]), status: :ok
+        render json: Equipment.where(site_id: params[:id]), status: :ok
     end
 
     def create
-        construction = Construction.find_by(id: params[:construction_id])
+        site = Site.find_by(id: params[:site_id])
         equipment = Equipment.create!(permitted_params)
         render json: {
             equipment: equipment, 
-            construction: construction
+            site: site
         }, status: :ok
     end
 
     private 
 
     def permitted_params
-        params.permit(:name, :construction_id)
+        params.permit(:name, :site_id)
     end
 
     def render_not_found

@@ -1,4 +1,4 @@
-class ConstructionsController < ApplicationController
+class SitesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
     wrap_parameters format: []
@@ -6,7 +6,7 @@ class ConstructionsController < ApplicationController
     def show
         id =  session[:user_id]
         if id 
-            construction = Construction.where(user_id: id )
+            construction = Site.where(user_id: id )
             render json: construction; 
         else 
             render json: {"error": "Not found "}
@@ -14,14 +14,14 @@ class ConstructionsController < ApplicationController
     end
 
     def index
-        site = Construction.find_by(id: params[:id])
+        site = Site.find_by(id: params[:id])
         render json: site, status: :ok
     end
 
 
     def create
         user = User.find_by(id: session[:user_id])
-        construction = Construction.create!(permitted_params)
+        construction = Site.create!(permitted_params)
         construction.update(user_id: user.id)
         render json: construction, status: :ok
  

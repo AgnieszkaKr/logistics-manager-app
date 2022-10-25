@@ -17,7 +17,7 @@ function Schedule() {
     // send request for all schedules, loop over and generate buttons
     // when  click on the button, return false to any other gates and true to choosen gate
     const location = useLocation()
-    // construction id:
+    // site id:
     const {id , name} = location.state
     console.log("id", id, "name",name)
     useEffect(() =>{

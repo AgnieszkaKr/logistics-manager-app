@@ -8,7 +8,7 @@ function Layout({site_id, setDisplayLayout}) {
     const[errors, setErrors] = useState("")
 
    
-    fetch(`/constructions/${site_id}`)
+    fetch(`/sites/${site_id}`)
         .then(res =>{
         if(res.ok){
             res.json()
