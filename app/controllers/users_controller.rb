@@ -17,13 +17,24 @@ class UsersController < ApplicationController
         end
     end
 
-    def create
-        user = User.new(permitted_params)
-        if user.save
-            session[:user_id] = user.id
-            render json: {"info": user}, status: :ok
+   
+    def create 
+        new_user = User.create(permitted_params)
+        if new_user.valid?
+            session[:user_id] = new_user.id
+            invitations = Invitation.where(email: params[:email])
+            if invitations
+                invitations.each do |invitation|
+                Contractor.create!(site_id: invitation.site_id, user_id: new_user.id)
+                end
+            end
+            invitations.destroy_all
+            render json: new_user, status: :created
+        else  
+            render json: {error: 'Validation Error'}
         end
     end
+
 
     def update
         user = User.find(params[:id])
@@ -36,9 +47,7 @@ class UsersController < ApplicationController
         user.destroy
         head :no_content
     end
-    def construction
-
-    end
+   
     private 
 
     def permitted_params
@@ -52,4 +61,8 @@ class UsersController < ApplicationController
     def render_unprocessable_entity_response(exception)
         render json: {"errors": exception.record.errors.full_messages}, status: :unprocessable_entity
     end
+
+   
 end
+
+

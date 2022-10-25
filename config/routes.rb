@@ -2,11 +2,9 @@ Rails.application.routes.draw do
 
   
   resources :equipment
-
-
-
-  resources :users
+  get '/users', to: 'users#index'
   get '/me', to: 'users#show'
+  post '/users', to: 'users#create'
   get '/sign_out', to: 'sessions#destroy'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -20,5 +18,7 @@ Rails.application.routes.draw do
   patch '/deliveries/:id', to: 'deliveries#update' 
   post '/deliveries', to: 'deliveries#create'
   get '/contractors', to: 'contractors#show'
-  get '/invitations', to: 'invitations#show'
+  get '/invitations', to: 'invitations#index'
+  post '/invitations', to: 'invitations#create'
+  get 'invitations/site/:site_id', to: 'invitations#show_site_invitations'
 end

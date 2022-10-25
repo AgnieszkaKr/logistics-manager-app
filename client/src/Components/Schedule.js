@@ -175,7 +175,7 @@ function Schedule() {
             
                 <button onClick={() => {setUpdateContractors(false) }}> Edit Equipment</button>
             </div>
-            {updateContractors ? <Contractors />  :
+            {updateContractors ? <Contractors id={id}/>  :
             <div className="equipment-button-container"> 
                 <div className="access-points-buttons"> 
                     {equipment.map(element => <button className='equipment-button' onClick={() => {

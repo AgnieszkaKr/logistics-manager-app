@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from 'react'
 import './Styling/Contractors.css'
 
-function Contractors() {
+function Contractors({id}) {
     
     
     const[contractors, setContractors]=useState([{user: {name: "Loading...", company:"Loading...", title:"Loading...", email:"Loading...", phone_number:"Loading..." }}])
     const[count, setCount]=useState(0)
+    const[invitations, setInvitations] = useState([{email: "Loading..."}])
     useEffect(() =>{
         fetch('/contractors')
         .then(req => req.json())
         .then(res => 
-            {setContractors(res)
+            setContractors(res))
+    
+        fetch(`/invitations/site/${id}`)
+        .then(req => req.json())
+        .then(res => 
+            {setInvitations(res)
             console.log(res)})
     },[])
   return (
-    // return contructors for construction;
-    // if 
-
+    
+    <div>
     <div className='contractors-dashboard'>Contractors:
         <table class="table">
         <thead>
@@ -59,6 +64,39 @@ function Contractors() {
 
         </tbody>
         </table>
+    </div>
+         <div className='contractors-dashboard'>Invitations:
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                {invitations.map(invitation =>  { return (
+                    
+                <tr>  
+                    <th scope="row"></th>
+                    <td>{invitation.email}</td>
+                </tr>)
+                }
+            )}
+            <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>
+
+        </tbody>
+        </table>
+    </div>
+
     </div>
   )
 }
