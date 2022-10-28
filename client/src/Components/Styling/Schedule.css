@@ -1,7 +1,7 @@
 .schedule-dashboard{
-    margin: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
     display: flex;
-    align-items: center;
     flex-direction: column;
 }
 .equipment-button{
@@ -272,6 +272,9 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     justify-content:center;
     align-items: center;
     
+}
+.nav{
+    color:black;
 }
 
 

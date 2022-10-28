@@ -3,19 +3,23 @@ class SitesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response 
     wrap_parameters format: []
  
+    def index
+        render json: Site.all, status: :ok
+    end
+
     def show
+        site = Site.find_by(id: params[:id])
+        render json: site, status: :ok
+    end
+
+    def show_user_sites
         id =  session[:user_id]
         if id 
-            construction = Site.where(user_id: id )
-            render json: construction; 
+            construction = Site.where(user_id: id)
+            return render json: construction
         else 
             render json: {"error": "Not found "}
         end
-    end
-
-    def index
-        site = Site.find_by(id: params[:id])
-        render json: site, status: :ok
     end
 
 

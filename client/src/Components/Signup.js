@@ -42,7 +42,7 @@ function Signup({setSignupWindow, signupWindow, setLogWindow, setUserCreatedMess
           <div className='signup-container'>
           <button className="close-window" onClick={()=> setSignupWindow(false)}> X</button>
             <form onSubmit={(e) => handleSignup(e)}>
-                <div className='container'>
+                <div className='signup-content'>
                   <div className="input-lable">Signu up  </div>
                 
                     <br/>

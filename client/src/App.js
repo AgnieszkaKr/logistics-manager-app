@@ -11,7 +11,8 @@ import Login from './Components/Login'
 import Signup from './Components/Signup'
 import Schedule from './Components/Schedule'
 import MyConstructions from './Components/MyConstructions'
-import NewEquipment from './Components/NewEquipment'
+import Equipment from './Components/Equipment'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 
@@ -48,11 +49,11 @@ function App() {
         <Routes>
           myConstructions
         <Route exact key={4} path='/myConstructions' element={<MyConstructions setCurrentSite={setCurrentSite}/>}/>
-        <Route exact key={4} path='/newequipment' element={<NewEquipment/>}/>
+        
         <Route exact key={4} path='/schedule' element={<Schedule/>}/>
         <Route exact key={2} path='/signup' element={<Signup/>}/>
         <Route exact key={2} path='/about' element={<About />}/>
-       
+       <Route exact key={2} path='/schedule/equpment' element={<Equipment />}/>
         <Route exac key={3} path='/createConstruction' element={<CreateNewConstruction loggedIn={loggedIn} setSignupWindow={setSignupWindow} signupWindow={signupWindow}/>} />
         <Route exact key={1} path='/' element={<Home/>}/>
 

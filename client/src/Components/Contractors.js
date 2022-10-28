@@ -8,7 +8,7 @@ function Contractors({id}) {
     const[count, setCount]=useState(0)
     const[invitations, setInvitations] = useState([{email: "Loading..."}])
     useEffect(() =>{
-        fetch('/contractors')
+        fetch(`/contractors/${id}`)
         .then(req => req.json())
         .then(res => 
             setContractors(res))
@@ -19,6 +19,32 @@ function Contractors({id}) {
             {setInvitations(res)
             console.log(res)})
     },[])
+    
+    const handleRemoveContractor=(id)=>{
+        console.log(id)
+               fetch(`/contractors/${id}`,{
+        method:"DELETE",
+        headers:{
+            'Content-Type':'application/json',
+        }})
+            .then(req => req.json())
+            .then(res => console.log(res))
+        let removeContractor = contractors.filter(contractor => contractor.id !== id )
+        setContractors(removeContractor)
+    }
+
+    const handleRemoveInvitation = (id) =>{
+        fetch(`/invitations/${id}`,{
+        method:"DELETE",
+        headers:{
+            'Content-Type':'application/json',
+        }})
+        .then(req => req.json())
+        .then(res => console.log(res))
+        let removeInvitation = invitations.filter(invitation => invitation.id !== id )
+        setInvitations(removeInvitation)
+    }
+
   return (
     
     <div>
@@ -33,6 +59,7 @@ function Contractors({id}) {
             <th scope="col">Title</th>
             <th scope="col">Phone number</th>
             <th scope="col">Email</th>
+            <th scope="col">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -49,28 +76,24 @@ function Contractors({id}) {
                     <td >{contractor.user.title}</td>
                     <td >{contractor.user.phone_number}</td>
                     <td >{contractor.user.email}</td>
+                    <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>
                 </tr>)
                 }
             )}
-            <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
+
 
         </tbody>
         </table>
     </div>
-         <div className='contractors-dashboard'>Invitations:
+         <div className='contractors-dashboard'>Pending invitations:
         <table class="table">
         <thead>
             <tr>
             <th scope="col">#</th>
             <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -80,18 +103,13 @@ function Contractors({id}) {
                 <tr>  
                     <th scope="row"></th>
                     <td>{invitation.email}</td>
+                    <td>{invitation.name}</td>
+                    <td>{invitation.company}</td>
+
+                    <td ><button onClick={() => handleRemoveInvitation(invitation.id)}>X</button></td>
                 </tr>)
                 }
             )}
-            <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
 
         </tbody>
         </table>

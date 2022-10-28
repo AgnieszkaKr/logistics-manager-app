@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 
 function MyConstructions({setCurrentSite}) {
     
-    const [mySites, setMyySites] = useState([])
+    const [mySites, setMySites] = useState([])
     useEffect(() =>{
-        fetch('/sites')
+        fetch('/managers/site')
         .then(req => req.json())
-        .then(res => setMyySites(res))
+        .then(res => setMySites(res))
+
+
+        fetch('/contractors/site')
+        .then(req => req.json())
+        .then(res => console.log("contractor",res))
+
     },[])
     console.log(mySites)
   return (

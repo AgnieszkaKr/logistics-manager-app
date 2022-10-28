@@ -13,12 +13,28 @@ class InvitationsController < ApplicationController
 
     def create 
         user = User.find_by(email: params[:email])
-        if user
+        if user 
+            contractor = Contractor.where(site_id: params[:site_id], user_id: user.id)
+            if contractor.exists?   
+            invitation = {"mess": "User is already part of your contractors"}
+            else
             invitation = Contractor.create!(site_id: params[:site_id], user_id: user.id)
+            end
         else
-            invitation = Invitation.create!(permitted_params)
+            invitations =  Invitation.where(site_id: params[:site_id]).where(email: params[:email]) 
+            if invitations.exists? 
+                invitation = {"mess": "Invitation was already sent"}
+            else
+                invitation = Invitation.create!(permitted_params)
+            end
         end
         render json: invitation, status: :ok
+    end
+
+    def destroy
+        invitation = Invitation.find(params[:id])
+        invitation.destroy
+        head :no_content
     end
 
     
@@ -26,7 +42,7 @@ class InvitationsController < ApplicationController
     private
 
      def permitted_params
-        params.permit(:email, :site_id)
+        params.permit(:email, :name, :company, :site_id)
     end
 
     def render_not_found

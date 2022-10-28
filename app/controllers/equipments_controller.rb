@@ -16,12 +16,17 @@ class EquipmentsController < ApplicationController
     end
 
     def create
-        site = Site.find_by(id: params[:site_id])
         equipment = Equipment.create!(permitted_params)
         render json: {
             equipment: equipment, 
             site: site
         }, status: :ok
+    end
+
+    def destroy
+        equipment = Equipment.find(params[:id])
+        equipment.destroy
+        head :no_content
     end
 
     private 

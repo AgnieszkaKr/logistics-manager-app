@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import { Scheduler } from "@aldabil/react-scheduler";
 import './Styling/Schedule.css'
 import { useLocation, Link } from 'react-router-dom'
 import Layout from './Layout'
 import Contractors from './Contractors'
-
+import Equipment from './Equipment'
+import NewContractor from './NewContractor'
 
 function Schedule() {
     const[equipment, setEquipment] = useState([{id: "loading...", name: "loading...", deliveries: "loading..."}])
@@ -14,6 +17,9 @@ function Schedule() {
     const[deliveries, setDeliveries] =useState([])
     const[displayLayout, setDisplayLayout]=useState(false)
     const[updateContractors, setUpdateContractors] = useState(false)
+    const[editEquipment, setEditEquipment]=useState(false)
+    const[displaySchedule, setDisplaySchedule] =useState(true)
+    const[addContractor, setAddContractor] =useState(false)
     // send request for all schedules, loop over and generate buttons
     // when  click on the button, return false to any other gates and true to choosen gate
     const location = useLocation()
@@ -166,16 +172,36 @@ function Schedule() {
 
     return (
         <div className="schedule-dashboard">
-            {displayLayout ? <Layout site_id={id} setDisplayLayout={setDisplayLayout} /> : null}
-            <div>
-            
-                <button onClick={() => {setDisplayLayout(true); setUpdateContractors(false) }}>Display layout</button>
-            
-                <button onClick={()=> setUpdateContractors(true)}> Update contractor</button>
-            
-                <button onClick={() => {setUpdateContractors(false) }}> Edit Equipment</button>
-            </div>
-            {updateContractors ? <Contractors id={id}/>  :
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <button className="nav-link" aria-current="page" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => {setDisplayLayout(true);setUpdateContractors(false); setEditEquipment(false) }}>Display layout</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}> Update contractor</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => {setDisplayLayout(false); setDisplaySchedule(false); setUpdateContractors(false); setEditEquipment(false); setAddContractor(true)  }}>Add new contractor</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(true); setAddContractor(false) }}> Edit Equipment</button>
+                </li>
+            </ul>
+
+            {displayLayout ? (
+                <Layout site_id={id} setDisplayLayout={setDisplayLayout} /> 
+            ): null}
+
+            {editEquipment ?
+                <Equipment id={id} name={name} equipment={equipment} setEquipment={setEquipment}/>
+            : null}
+        
+            {updateContractors ? <Contractors id={id}/>  : null} 
+            {addContractor ? <NewContractor id={id} /> : null}
+            {displaySchedule ?
+            (<>
             <div className="equipment-button-container"> 
                 <div className="access-points-buttons"> 
                     {equipment.map(element => <button className='equipment-button' onClick={() => {
@@ -190,28 +216,11 @@ function Schedule() {
                     setOpenSchedule([element.id, element.name]); 
                     setConfirmDeliveries(element.deliveries) }}>{element.name}</button>)}
                 </div>
-                <div>
-                    {/* <Link to="/newequipment" state={{site_id: id, name: name}}>
-                        <button >Add new equipment</button>
-                    </Link>  */}
-                </div>
-            </div> }
-       
-        
-            {(openSchedule.length > 0 ? 
-                (<div className="schedule-open-container">Schedule number {openSchedule[1]} 
-                
-                {/* <button onClick={()=>setUpdateEquipment(!updateEquipment)}> update equipment </button> */}
-                {updateEquipment ? (
-                <div> Update information: 
-                    <div>{openSchedule[1]}</div>
-                    <input />
-                    <button >Confirm</button>
-                </div>
-            ) : null}
-                
+            </div>
+                {(openSchedule.length > 0 ?(
+                <div className="schedule-open-container">Schedule number {openSchedule[1]} 
                     <Scheduler
-                        view="day"
+                        view="week"
                         events={deliveryTransformed}
                         onConfirm={handleConfirm}
                         onDelete={handleDelete}
@@ -238,9 +247,15 @@ function Schedule() {
 
                         }}
                     />
-            
-            </div>):(null))}
-        </div>
+                </div>):null)} 
+            </>)
+            : null }
+                
+
+
+
+            </div>
+        
   )
 }
 
