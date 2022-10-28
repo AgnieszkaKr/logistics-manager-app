@@ -18,9 +18,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-      render json: {"response": session[:user_id]}
+      
       reset_session
-      head :no_content
+      render json: {"response": session[:user_id]}
+      
   end 
 
   private 

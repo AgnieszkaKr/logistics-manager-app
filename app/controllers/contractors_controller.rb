@@ -11,19 +11,16 @@ class ContractorsController < ApplicationController
 
     def show_contractor_sites
         id = session[:user_id]
-        # if id.exists?
-        #     render json: contractors = Contractor.where(user_id: id)
-        #     # if contractors.exists?
-        #     #     constructions = contractors.map do |contractor|
-        #     #     Site.find_by(contractor.site_id)
-        #     #     end
-        #     #     render json: constructions
-        #     # end
-        # else
-        #     render json: {"hej": "hej"}
-        # end
-        
-        render json: {"hej": "hej"}
+        if id
+            contractors = Contractor.where(user_id: id)
+            sites = contractors.map do |contractor|
+                Site.find_by(id: contractor.site_id)
+            end
+            render json: sites
+        else
+            render status: :not_found
+        end
+
     end
 
     def destroy

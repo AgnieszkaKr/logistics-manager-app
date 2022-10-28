@@ -8,13 +8,11 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
   const navigate = useNavigate()
   // const [userCreatedMessage, setUserCreatedMessage] = useState('')
   const handleLogOut =(e) =>{
-    e.preventDefault()
-    console.log("log out")
     fetch('/logout', {
       method: "DELETE",
     })
-    .then(req => req.json)
-    .then(res => console.log(res.error))
+    .then(req => req.json())
+    .then(res => console.log(res))
     setLoggedIn(false)
     navigate('/')
   }

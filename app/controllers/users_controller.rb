@@ -11,11 +11,14 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         if user
-        render json: { "user": session[:user_id]}, status: :ok
+        render json: user,  status: :ok
         else
-        render json: { error: session[:user_id] }, status: :unauthorized
+        render json: {error: "Invalid login"}, status: 418
         end
     end
+
+            
+
 
    
     def create 

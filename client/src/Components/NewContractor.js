@@ -23,7 +23,6 @@ function NewContractor(id) {
             body: JSON.stringify(newInvitation)
             })
             .then(res =>{
-                console.log(res.ok)
                 if(res.ok){
                     setNewContractor({
                         name: "",

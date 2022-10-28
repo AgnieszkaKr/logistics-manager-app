@@ -27,6 +27,7 @@ class SitesController < ApplicationController
         user = User.find_by(id: session[:user_id])
         construction = Site.create!(permitted_params)
         construction.update(user_id: user.id)
+        manager = Manager.create!(user_id: user.id, site_id: construction.id )
         render json: construction, status: :ok
  
     end

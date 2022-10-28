@@ -1,5 +1,5 @@
-.container-login{
-    height: 30%;
+.container{
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -87,7 +87,7 @@
 }
 
 .logo-login{
-    width: 60%;
+    width: 50%;
 }
 .input-lable{
     color: white;

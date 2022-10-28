@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   resources :equipment
   get '/contractors', to: 'contractors#index'
+  # create '/managers', to: 'managers#create'
   get '/managers', to: 'managers#index'
   get 'managers/site', to: 'managers#show_manager_sites'
   get '/users', to: 'users#index'
@@ -28,5 +29,6 @@ Rails.application.routes.draw do
   post '/invitations', to: 'invitations#create'
   delete '/invitations/:id', to: 'invitations#destroy'
   get '/invitations/site/:site_id', to: 'invitations#show_site_invitations'
-  get '/contractors/sites', to: 'contractors#show_contractor_sites'
+  get '/contractors_sites', to: 'contractors#show_contractor_sites'
+  get '/equipment_site_contractor/:id', to: 'equipments#show_site_equipment_contractor'
 end

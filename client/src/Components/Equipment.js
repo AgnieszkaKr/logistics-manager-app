@@ -10,14 +10,14 @@ function Equipment({id, name, equipment, setEquipment}) {
         headers:{
             'Content-Type':'application/json',
         }})
-            .then(req => req.json())
-            .then(res => console.log(res))
-        let removeEquipment = equipment.filter(eq => eq.id !== id )
-        setEquipment(removeEquipment)
+            .then(req => {if(req.ok){
+                    let removeEquipment = equipment.filter(eq => eq.id !== id )
+                    setEquipment(removeEquipment)
+            }})
+
     }
     
     const handleNewEquipment =()=>{
-        console.log({site_id: id, name: newEquipment })
         fetch('/equipments',{
         method:"POST",
         headers:{
@@ -26,13 +26,13 @@ function Equipment({id, name, equipment, setEquipment}) {
         body: JSON.stringify({site_id: id, name: newEquipment })
         })
         .then(res =>{
-        if(res.ok){
-            setEquipment(...equipment, {site_id: id, name: newEquipment});        
-            res.json().then(console.log(res))
+        if(res.ok){        
+            res.json()
+            .then(req => console.log(equipment))
+            // setEquipment(...equipment, {id: res.id, site_id: id, name: newEquipment}))
         } else {
             res.json().then(e => console.log(e))
         }})
-    
         setNewEquipment("")
     }
     return (
@@ -40,7 +40,7 @@ function Equipment({id, name, equipment, setEquipment}) {
             <div>Add new equipment to generate new schedule</div>
             {name}
 
-            <input value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value); console.log(e.target.value)}}/>
+            <input value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value)}}/>
             <button onClick={handleNewEquipment}>Create</button>
             <div>
             <table class="table">

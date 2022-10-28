@@ -2,7 +2,6 @@ import './Styling/About.css'
 
 function About({userName}) {
   if(userName !== null){
-    console.log(userName)
   }
   
   return (

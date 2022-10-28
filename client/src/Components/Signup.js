@@ -16,8 +16,6 @@ function Signup({setSignupWindow, signupWindow, setLogWindow, setUserCreatedMess
   })
   const handleSignup =(e) =>{
     e.preventDefault()
-    console.log("signup")
-   
     fetch('/users',{
       method:"POST",
       headers:{

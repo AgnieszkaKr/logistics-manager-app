@@ -16,9 +16,7 @@ function CreatenewSite() {
 
     const createNewSite =(e) =>{
         setResponseNewSite(false)
-        console.log(newSite)
         e.preventDefault()
-        console.log('created')
         fetch('/sites',{
         method:"POST",
         headers:{
@@ -28,7 +26,7 @@ function CreatenewSite() {
         })
         .then(res =>{
         if(res.ok){
-            res.json().then(console.log);
+            res.json().then();
             navigate('/myConstructions')
             setNewSite({
                 address_city: "",
@@ -39,11 +37,8 @@ function CreatenewSite() {
                 layout_plan:"",
             })
         } else {
-            res.json().then(e => setResponseNewSite(e.errors))
-            
-        }
-        })
-        console.log(responseNewSite);
+            res.json().then(e => setResponseNewSite(e.errors)) 
+        }})
     }
     
     return (

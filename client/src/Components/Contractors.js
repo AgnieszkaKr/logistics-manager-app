@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './Styling/Contractors.css'
 
-function Contractors({id}) {
+function Contractors({id, contractor}) {
     
     
     const[contractors, setContractors]=useState([{user: {name: "Loading...", company:"Loading...", title:"Loading...", email:"Loading...", phone_number:"Loading..." }}])
@@ -16,21 +16,23 @@ function Contractors({id}) {
         fetch(`/invitations/site/${id}`)
         .then(req => req.json())
         .then(res => 
-            {setInvitations(res)
-            console.log(res)})
+            {setInvitations(res)})
     },[])
     
     const handleRemoveContractor=(id)=>{
-        console.log(id)
-               fetch(`/contractors/${id}`,{
+
+        fetch(`/contractors/${id}`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json',
         }})
-            .then(req => req.json())
-            .then(res => console.log(res))
-        let removeContractor = contractors.filter(contractor => contractor.id !== id )
-        setContractors(removeContractor)
+            .then(req => {
+                if(req.ok){
+                    let removeContractor = contractors.filter(contractor => contractor.id !== id )
+                    setContractors(removeContractor)
+                }
+            })
+        
     }
 
     const handleRemoveInvitation = (id) =>{
@@ -39,10 +41,14 @@ function Contractors({id}) {
         headers:{
             'Content-Type':'application/json',
         }})
-        .then(req => req.json())
-        .then(res => console.log(res))
-        let removeInvitation = invitations.filter(invitation => invitation.id !== id )
-        setInvitations(removeInvitation)
+        .then(req => {
+            if(req.ok){
+                let removeInvitation = invitations.filter(invitation => invitation.id !== id )
+                setInvitations(removeInvitation) 
+            }
+        })
+        
+        
     }
 
   return (
@@ -59,7 +65,7 @@ function Contractors({id}) {
             <th scope="col">Title</th>
             <th scope="col">Phone number</th>
             <th scope="col">Email</th>
-            <th scope="col">Remove</th>
+            {contractor ? null :<th scope="col">Remove</th>}
             </tr>
         </thead>
         <tbody>
@@ -76,7 +82,7 @@ function Contractors({id}) {
                     <td >{contractor.user.title}</td>
                     <td >{contractor.user.phone_number}</td>
                     <td >{contractor.user.email}</td>
-                    <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>
+                    {contractor ? null : <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>}
                 </tr>)
                 }
             )}
@@ -93,7 +99,7 @@ function Contractors({id}) {
             <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Company</th>
-            <th scope="col">Remove</th>
+            {contractor ? null : <th scope="col">Remove</th>}
             </tr>
         </thead>
         <tbody>
@@ -106,7 +112,7 @@ function Contractors({id}) {
                     <td>{invitation.name}</td>
                     <td>{invitation.company}</td>
 
-                    <td ><button onClick={() => handleRemoveInvitation(invitation.id)}>X</button></td>
+                    {contractor ? null :<td ><button onClick={() => handleRemoveInvitation(invitation.id)}>X</button></td>}
                 </tr>)
                 }
             )}

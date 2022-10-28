@@ -9,7 +9,7 @@ import Contractors from './Contractors'
 import Equipment from './Equipment'
 import NewContractor from './NewContractor'
 
-function Schedule() {
+function DashboardContractor() {
     const[equipment, setEquipment] = useState([{id: "loading...", name: "loading...", deliveries: "loading..."}])
     const[updateEquipment, setUpdateEquipment]=useState(false)
     const[errors, setErrors]=useState([])
@@ -20,7 +20,7 @@ function Schedule() {
     const[editEquipment, setEditEquipment]=useState(false)
     const[displaySchedule, setDisplaySchedule] =useState(true)
     const[addContractor, setAddContractor] =useState(false)
-    const[contractor, setContractor]=useState(false)
+    const[contractor, setContractor]=useState(true)
     // send request for all schedules, loop over and generate buttons
     // when  click on the button, return false to any other gates and true to choosen gate
     const location = useLocation()
@@ -124,8 +124,7 @@ function Schedule() {
                                     title: d.title,
                                     start: new Date(d.start_time),
                                     end: new Date(d.finish_time),
-                                    color: "green",
-                                    disabled: true
+                                    color: "green"
                                 } ))
     // update/ drop works
     const updatedEvent = (time, updated) =>{
@@ -171,31 +170,19 @@ function Schedule() {
                     <button className="nav-link" onClick={() => {setDisplayLayout(true);setUpdateContractors(false); setEditEquipment(false) }}>Display layout</button>
                 </li>
                 <li class="nav-item">
-                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}> Update contractor</button>
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setDisplayLayout(false); setDisplaySchedule(false); setUpdateContractors(false); setEditEquipment(false); setAddContractor(true)  }}>Add new contractor</button>
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(true); setAddContractor(false) }}> Edit Equipment</button>
+                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}>Contact Information</button>
                 </li>
             </ul>
 
             {displayLayout ? (
                 <Layout site_id={id} setDisplayLayout={setDisplayLayout} /> 
             ): null}
-
-            {editEquipment ?
-                <Equipment id={id} name={name} equipment={equipment} setEquipment={setEquipment}/>
-            : null}
-        
-            {updateContractors ? <Contractors id={id} contractor={contractor}/>  : null} 
-            {addContractor ? <NewContractor id={id} /> : null}
+            {updateContractors ? <Contractors id={id} contractor={contractor} />  : null} 
             {displaySchedule ?
             (<>
             <div className="equipment-button-container"> 
                 <div className="access-points-buttons"> 
-                    {equipment.map(element => <button className='equipment-button' onClick={() => {
+                    {equipment.map(element => <button className='equipment-button' key={element.name} onClick={() => {
                     setDeliveries(element.deliveries)
                     let deliveryTransformed = deliveries.map(d=>  ({
                                     event_id: d.id,
@@ -238,7 +225,7 @@ function Schedule() {
 
                         }}
                     />
-                </div>):null)} 
+                </div>):<div> No schedule to display </div>)} 
             </>)
             : null }
                 
@@ -250,7 +237,7 @@ function Schedule() {
   )
 }
 
-export default Schedule
+export default DashboardContractor
 
 
 

@@ -14,13 +14,20 @@ class EquipmentsController < ApplicationController
     def show_site_equipment
         render json: Equipment.where(site_id: params[:id]), status: :ok
     end
+    # def show_site_equipment_contractor
+    #     equipments= Equipment.where(site_id: params[:id])
+    #     id = session[:user_id]
+    #     ifChange = equipments.map do |equipment|
+    #         if(equipment.user_id != id)
+    #             return equipment
+    #         end
+    #     end
+    #     render json: ifChange, status: :ok
+    # end
 
     def create
         equipment = Equipment.create!(permitted_params)
-        render json: {
-            equipment: equipment, 
-            site: site
-        }, status: :ok
+        render json: equipment, status: :ok
     end
 
     def destroy

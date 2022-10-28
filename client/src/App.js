@@ -12,6 +12,7 @@ import Signup from './Components/Signup'
 import Schedule from './Components/Schedule'
 import MyConstructions from './Components/MyConstructions'
 import Equipment from './Components/Equipment'
+import DashboardContractor from './Components/DashboardContractor'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
@@ -29,14 +30,16 @@ function App() {
   
       useEffect(() => {
       fetch("/me")
-      .then(res => res.json()
-      .then(req => {if(req.user  !== false){
+      .then(req => req.json())
+      .then(res => 
+        {
+          if(res.name){
+        console.log(res)
         setLoggedIn(true)
-        setUserName(req.user)
-      } else{
-
-      }
-    }));
+        setUserName(res.name)}else{
+          setLoggedIn(false)
+        }}
+      )
      }, []);
       console.log(loggedIn, userName)
       console.log(currentSite)
@@ -49,11 +52,11 @@ function App() {
         <Routes>
           myConstructions
         <Route exact key={4} path='/myConstructions' element={<MyConstructions setCurrentSite={setCurrentSite}/>}/>
-        
+        <Route exact key={4} path='/dashboard_contractor' element={<DashboardContractor/>}/>
         <Route exact key={4} path='/schedule' element={<Schedule/>}/>
         <Route exact key={2} path='/signup' element={<Signup/>}/>
         <Route exact key={2} path='/about' element={<About />}/>
-       <Route exact key={2} path='/schedule/equpment' element={<Equipment />}/>
+        <Route exact key={2} path='/schedule/equpment' element={<Equipment />}/>
         <Route exac key={3} path='/createConstruction' element={<CreateNewConstruction loggedIn={loggedIn} setSignupWindow={setSignupWindow} signupWindow={signupWindow}/>} />
         <Route exact key={1} path='/' element={<Home/>}/>
 
