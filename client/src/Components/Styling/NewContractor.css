@@ -1,0 +1,27 @@
+.new-contractor-container{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+.form-new-ontractor{
+    margin-top: 1%
+}
+.contractor-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%
+}
+.button-new-contractor{
+  background-color:rgb(238, 238, 238);
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 0.5rem;
+  width:250px;
+  margin-top: 1%
+}
+
+.button-new-contractor:hover {
+  background-color: #555555;
+  color: white;
+  
+}

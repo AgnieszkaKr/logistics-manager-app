@@ -62,7 +62,6 @@ function App() {
 
         </Routes>
       </Router>
-      <Footer/>
       {/* open login, signup window  */}
       {logWindow ? <Login setLogWindow={setLogWindow} setUserName={setUserName} setLoggedIn={setLoggedIn}/> : null}
       {signupWindow ? <Signup setSignupWindow={setSignupWindow} signupWindow={signupWindow} setLogWindow={setLogWindow}/> : null}

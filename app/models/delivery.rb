@@ -3,6 +3,6 @@ class Delivery < ApplicationRecord
     validates :start_time, presence: true
     validates :title, presence: true
     belongs_to :equipment
-    belongs_to :user
+   
 
 end

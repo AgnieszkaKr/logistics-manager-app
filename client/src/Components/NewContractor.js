@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import './Styling/NewContractor.css'
 function NewContractor(id) {
    
     const[newContractor, setNewContractor] = useState({
@@ -37,22 +37,23 @@ function NewContractor(id) {
             })}
 
   return (
-    <div>
-        {contractorAdded ? <div>Your invitation was sended. </div> : null}
-        <form onSubmit={handleInviteContractor}>
-            <div>
-                <label className="contractor-input-lable">Company</label>
+    <div className='new-contractor-container'>
+        {contractorAdded ? <div><h4>Your invitation was sent</h4> </div> : <div><h4>Fill in each field to invite new contractor to your project</h4></div>}
+        <form className='form-new-ontractor' onSubmit={handleInviteContractor}>
+            <div className="contractor-input">
+                <label className="">Company</label>
                 <input className="input-field-user" type="text" name='company'value={newContractor.company}  onChange={(e=>setNewContractor({...newContractor, company: e.target.value}))}/>
             </div>
-            <div>
+            <div className="contractor-input">
                 <label className="contractor-input-lable">Name, last name</label>
                 <input className="input-field-user" type="text" name='name' value={newContractor.name}  onChange={(e=>setNewContractor({...newContractor, name: e.target.value}))}/>
             </div>
-            <div>
+            <div className="contractor-input">
                 <label className="contractor-input-lable">Email</label>
                 <input className="input-field-user" type="text" name='email'value={newContractor.email}  onChange={(e=>setNewContractor({...newContractor, email: e.target.value}))}/>
-            </div>    
-            <button>Invite</button>                    
+            </div>
+             
+            <button className="button-new-contractor">Invite</button>                    
        </form>   
     </div>
   )

@@ -21,7 +21,8 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
   
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <img src='./Logo.png' className="logo-main-page"  alt=''/>
+          <img src='./LogoScreen.png' className="logo-main-page"  alt=''/>
+          
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

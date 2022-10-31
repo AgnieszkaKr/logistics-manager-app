@@ -1,15 +1,20 @@
 .container-home{
     display: flex;
-    width: 100%;
+    width: 80%;
     margin-top: 3%;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    margin-right: 5%;
+    margin-left: 7%;  
+    justify-content: space-around;
 }
 
-.picture-home{
-    width: 45%
+.home-text{
+    display: flex;
+    align-items: center;
+    width: 50%
 }
 
-.title-home{
-    width: 45%
+.home-logo{
+    width: 30%
 }
+
+

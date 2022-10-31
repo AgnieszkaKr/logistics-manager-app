@@ -34,11 +34,11 @@ function MyConstructions({setCurrentSite}) {
 
         {displayMySites ? (
              <div className='sites-manager-container'>
-                <div>You manage logistics on:</div>
+                <h5>YOUR ROLE: Logistics Manager </h5>
                 {mySites.length === 0 ?<div>It seems that you don't have acces to any sites.Create one or ask for invitation.</div> :(mySites.map(b => 
                 <div className="user-sites" key={b.id}>
-                    <div>{b.building_name}</div>
-                    <div>Address: </div>
+                    <h6>{b.building_name}</h6>
+
                     <div>{b.address_building_number}</div>
                     <div>{b.address_street}</div>
                     <div>{b.address_zip}</div>
@@ -51,11 +51,11 @@ function MyConstructions({setCurrentSite}) {
             </div>
         ):(
              <div className='sites-manager-container'>
-                <div>Constraction Sites </div>
+                <h5>YOUR ROLE: Contractor</h5>
                 {contractorSites.length === 0 ?<div>It seems that you don't have acces to any sites.Create one or ask for invitation.</div> :(contractorSites.map(b => 
                 <div className="user-sites" key={b.id}>
-                    <div>{b.building_name}</div>
-                    <div>Address: </div>
+                    <h6>{b.building_name}</h6>
+                    
                     <div>{b.address_building_number}</div>
                     <div>{b.address_street}</div>
                     <div>{b.address_zip}</div>

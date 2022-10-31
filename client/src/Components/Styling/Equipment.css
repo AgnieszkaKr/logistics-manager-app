@@ -1,0 +1,17 @@
+.add-new-eq{
+    margin-top: 2%;
+    margin-bottom: 1%
+}
+
+.add-new-equipment{background-color:rgb(238, 238, 238);
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 0.5rem;
+  width:250px;
+  margin-top: 1%}
+
+.add-new-equipment:hover{
+  background-color: #555555;
+  color: white;
+  
+}

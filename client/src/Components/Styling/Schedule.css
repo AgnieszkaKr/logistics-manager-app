@@ -276,5 +276,8 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
 .nav{
     color:black;
 }
-
+.displayed-schedule{
+    margin-top: 2%;
+    margin-bottom: 2%
+}
 

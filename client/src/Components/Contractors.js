@@ -65,7 +65,7 @@ function Contractors({id, contractor}) {
             <th scope="col">Title</th>
             <th scope="col">Phone number</th>
             <th scope="col">Email</th>
-            {contractor ? null :<th scope="col">Remove</th>}
+            <th scope="col">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@ function Contractors({id, contractor}) {
                     <td >{contractor.user.title}</td>
                     <td >{contractor.user.phone_number}</td>
                     <td >{contractor.user.email}</td>
-                    {contractor ? null : <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>}
+                    <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>
                 </tr>)
                 }
             )}
@@ -99,7 +99,7 @@ function Contractors({id, contractor}) {
             <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Company</th>
-            {contractor ? null : <th scope="col">Remove</th>}
+            <th scope="col">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -107,12 +107,11 @@ function Contractors({id, contractor}) {
                 {invitations.map(invitation =>  { return (
                     
                 <tr>  
-                    <th scope="row"></th>
+                    <th scope="row" key={invitation.name}></th>
                     <td>{invitation.email}</td>
                     <td>{invitation.name}</td>
                     <td>{invitation.company}</td>
-
-                    {contractor ? null :<td ><button onClick={() => handleRemoveInvitation(invitation.id)}>X</button></td>}
+                    <td ><button onClick={() => handleRemoveInvitation(invitation.id)}>X</button></td>
                 </tr>)
                 }
             )}

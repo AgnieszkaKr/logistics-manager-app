@@ -26,7 +26,6 @@ function Schedule() {
     const location = useLocation()
     // site id:
     const {id , name} = location.state
-
     useEffect(() =>{
         fetch(`/equipment/site/${id}`)
         .then(res =>{
@@ -89,23 +88,24 @@ function Schedule() {
                 title: event.title,
                 start_time: event.start,
                 finish_time: event.end }
+                console.log(newDelivery)
             fetch('/deliveries',{
                 method:"POST",
                 headers:{ 'Content-Type':'application/json'},
                 body: JSON.stringify(newDelivery)})
                 .then(res =>{
-                    if(res.ok){
-                        res.json().then(console.log);
-                    } else {
-                        res.json().then(e =>console.log(e.errors))
-                    }
+                    console.log(res)
+                    // if(res.ok){
+                    //     res.json().then(console.log(res));
+                    // } else {
+                    //     res.json().then(e =>console.log(e.errors))
+                    // }
                 })
                 return {
                     event_id: event.id,
                     title: event.title,
                     start: new Date(event.start),
                     end: new Date(event.end)}
-
             }
     }
 
@@ -125,7 +125,7 @@ function Schedule() {
                                     start: new Date(d.start_time),
                                     end: new Date(d.finish_time),
                                     color: "green",
-                                    disabled: true
+                                    // disabled: true
                                 } ))
     // update/ drop works
     const updatedEvent = (time, updated) =>{
@@ -164,9 +164,23 @@ function Schedule() {
     return (
         <div className="schedule-dashboard">
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <button className="nav-link" aria-current="page" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
-                </li>
+                <li class="nav-item dropdown">
+                    <button className="nav-link" aria-current="page" data-bs-toggle="dropdown" role="button" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
+                    <ul class="dropdown-menu">
+                        {equipment.map(element => <li ><button className="dropdown-item"   onClick={() => {
+                            setDeliveries(element.deliveries)
+                            let deliveryTransformed = deliveries.map(d=>  ({
+                                            event_id: d.id,
+                                            title: d.title,
+                                            start: new Date(d.start_time),
+                                            end: new Date(d.finish_time),
+                                            color: "green"
+                                        }))
+                            setOpenSchedule([element.id, element.name]); 
+                            setConfirmDeliveries(element.deliveries) }}>{element.name}</button></li>)}
+                                
+                    </ul>
+                </li>           
                 <li class="nav-item">
                     <button className="nav-link" onClick={() => {setDisplayLayout(true);setUpdateContractors(false); setEditEquipment(false) }}>Display layout</button>
                 </li>
@@ -195,21 +209,11 @@ function Schedule() {
             (<>
             <div className="equipment-button-container"> 
                 <div className="access-points-buttons"> 
-                    {equipment.map(element => <button className='equipment-button' onClick={() => {
-                    setDeliveries(element.deliveries)
-                    let deliveryTransformed = deliveries.map(d=>  ({
-                                    event_id: d.id,
-                                    title: d.title,
-                                    start: new Date(d.start_time),
-                                    end: new Date(d.finish_time),
-                                    color: "green"
-                                }))
-                    setOpenSchedule([element.id, element.name]); 
-                    setConfirmDeliveries(element.deliveries) }}>{element.name}</button>)}
+                
                 </div>
             </div>
                 {(openSchedule.length > 0 ?(
-                <div className="schedule-open-container">Schedule number {openSchedule[1]} 
+                <div className="schedule-open-container"><div className="displayed-schedule"><h4>{openSchedule[1]} schedule</h4></div> 
                     <Scheduler
                         view="week"
                         events={deliveryTransformed}

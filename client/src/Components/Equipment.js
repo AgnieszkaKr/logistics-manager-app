@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './Styling/Equipment.css'
 
 function Equipment({id, name, equipment, setEquipment}) {
     const[newEquipment, setNewEquipment]= useState("")
@@ -28,40 +29,44 @@ function Equipment({id, name, equipment, setEquipment}) {
         .then(res =>{
         if(res.ok){        
             res.json()
-            .then(req => console.log(equipment))
-            // setEquipment(...equipment, {id: res.id, site_id: id, name: newEquipment}))
+            // .then(req => setEquipment([...equipment, {id: req.id, site_id: id, name: newEquipment }]))
         } else {
             res.json().then(e => console.log(e))
         }})
+       
+        
         setNewEquipment("")
     }
     return (
         <div>
-            <div>Add new equipment to generate new schedule</div>
-            {name}
-
-            <input value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value)}}/>
-            <button onClick={handleNewEquipment}>Create</button>
+            <div className="add-new-eq"><h4>Add equipment to generate new schedule</h4></div>
+            <div>
+            <input className ="input-field-user" value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value)}}/>
+            </div>
+            <div>
+            <button className='add-new-equipment' onClick={handleNewEquipment}>Create</button>
+            </div>
             <div>
             <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
+                {/* <th scope="col">#</th> */}
+                <th scope="col"></th>
                 <th scope="col">Name</th>
-                <th scope="col">Update Name</th>
+                {/* <th scope="col">Update Name</th> */}
                 <th scope="col">Remove</th>
                 </tr>
             </thead>
             <tbody>
                 {equipment.map(eq =>
                 
-                    <tr>  
+                    <tr key={eq.id}>  
                     <th scope="row"></th>
                         <td>{eq.name}</td>
-                        <td>
+                        {/* <td>
                             <input/>
                             <button>ok</button>
-                        </td>
+                        </td> */}
                         <td>
                             <button onClick={()=> handleEquipmentDelete(eq.id)}>X</button>
                         </td>
