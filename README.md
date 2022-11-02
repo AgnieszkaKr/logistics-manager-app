@@ -1,5 +1,5 @@
 # README
-# Constrax application for managing logistics on a construction site. The application allows users to schedule deliveries to different access points on construction sites #like gates, hoists, and elevators. 
+# Constrax application for managing logistics on a construction site. The application allows users to schedule deliveries to different access points on construction sites like gates, hoists, and elevators. 
 
 #To start development server run:
 
