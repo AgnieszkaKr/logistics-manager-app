@@ -3,11 +3,11 @@
 
 #To start development server run:
 
-#gem install 
-#npm install --prefix client
-#npm start --prefix client
-#rails s
+- gem install 
+- npm install --prefix client
+- npm start --prefix client
+- rails s
 
 #Instead of npm start and rails s you can start development server using:
-#foreman start -f Procfile.dev
+foreman start -f Procfile.dev
 
