@@ -9,5 +9,5 @@
 - rails s
 
 #Instead of npm start and rails s you can start development server using:
-foreman start -f Procfile.dev
+- foreman start -f Procfile.dev
 
