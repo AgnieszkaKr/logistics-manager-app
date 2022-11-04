@@ -47,8 +47,8 @@ function Equipment({id, name, equipment, setEquipment}) {
             <button className='add-new-equipment' onClick={handleNewEquipment}>Create</button>
             </div>
             <div>
-            <table class="table">
-            <thead>
+            <table className="table">
+            <thead className="thead-light ">
                 <tr>
                 {/* <th scope="col">#</th> */}
                 <th scope="col"></th>

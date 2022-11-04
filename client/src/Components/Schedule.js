@@ -166,10 +166,10 @@ function Schedule() {
     return (
         <div className="site-dashboard">
         <div className="schedule-dashboard">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-pills mb-3"  role="tablist">
                 <li class="nav-item dropdown">
-                    <button className="nav-link active" aria-current="page" data-bs-toggle="dropdown" role="button" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
-                    <ul class="dropdown-menu">
+                    <button className="nav-link" id="pills-contact-tab" aria-current="page" data-bs-toggle="dropdown" data-bs-target="#pills-contact" aria-selected="true" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false); setPendingInvitations(false) }} >SCHEDULE </button>
+                    <ul className="dropdown-menu">
                         {equipment.map(element => <li ><div className="dropdown-item"   onClick={() => {
                             setDeliveries(element.deliveries)
                             let deliveryTransformed = deliveries.map(d=>  ({
@@ -184,20 +184,20 @@ function Schedule() {
                                 
                     </ul>
                 </li>           
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setDisplayLayout(true);setUpdateContractors(false); setEditEquipment(false) }}>Display layout</button>
+                <li className="nav-item">
+                    <button className="nav-link" id="pills-contact-tab"   type="button"   aria-selected="false" onClick={() => {setDisplayLayout(true) }}>Display layout</button>
+                </li>
+                <li className="nav-item">
+                    <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false); setPendingInvitations(false)}}> Contractor's list</button>
+                </li>
+                <li className="nav-item">
+                    <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(false); setAddContractor(false); setPendingInvitations(true) }}> Pending invitations</button>
+                </li>
+                <li className="nav-item">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() => {setDisplayLayout(false); setDisplaySchedule(false); setUpdateContractors(false); setEditEquipment(false); setAddContractor(true); setPendingInvitations(false)  }}>Add new contractor</button>
                 </li>
                 <li class="nav-item">
-                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}> Update contractor's list</button>
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(false); setAddContractor(false); setPendingInvitations(true) }}> Pending invitations</button>
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setDisplayLayout(false); setDisplaySchedule(false); setUpdateContractors(false); setEditEquipment(false); setAddContractor(true)  }}>Add new contractor</button>
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(true); setAddContractor(false) }}> Edit Equipment</button>
+                    <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(true); setAddContractor(false); setPendingInvitations(false) }}> Edit Equipment</button>
                 </li>
                 
             </ul>

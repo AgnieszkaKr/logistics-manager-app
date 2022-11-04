@@ -38,7 +38,7 @@ function NewContractor(id) {
 
   return (
     <div className='new-contractor-container'>
-        {contractorAdded ? <div><h4>Your invitation was sent</h4> </div> : <div><h4>Fill in each field to invite new contractor to your project</h4></div>}
+        {contractorAdded ? <div><h4>Your invitation was sent</h4> </div> : <div></div>}
         <form className='form-new-ontractor' onSubmit={handleInviteContractor}>
             <div className="contractor-input">
                 <label className="">Company</label>
