@@ -8,6 +8,7 @@ import Layout from './Layout'
 import Contractors from './Contractors'
 import Equipment from './Equipment'
 import NewContractor from './NewContractor'
+import Invitations from './Invitations'
 
 function Schedule() {
     const[equipment, setEquipment] = useState([{id: "loading...", name: "loading...", deliveries: "loading..."}])
@@ -20,6 +21,7 @@ function Schedule() {
     const[editEquipment, setEditEquipment]=useState(false)
     const[displaySchedule, setDisplaySchedule] =useState(true)
     const[addContractor, setAddContractor] =useState(false)
+    const[pendingInvitations, setPendingInvitations]=useState(false)
     const[contractor, setContractor]=useState(false)
     // send request for all schedules, loop over and generate buttons
     // when  click on the button, return false to any other gates and true to choosen gate
@@ -162,12 +164,13 @@ function Schedule() {
 
 
     return (
+        <div className="site-dashboard">
         <div className="schedule-dashboard">
             <ul class="nav nav-tabs">
                 <li class="nav-item dropdown">
-                    <button className="nav-link" aria-current="page" data-bs-toggle="dropdown" role="button" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
+                    <button className="nav-link active" aria-current="page" data-bs-toggle="dropdown" role="button" onClick={() => {setDisplayLayout(false); setDisplaySchedule(true); setUpdateContractors(false); setEditEquipment(false); setAddContractor(false) ; setEditEquipment(false) }} >SCHEDULE </button>
                     <ul class="dropdown-menu">
-                        {equipment.map(element => <li ><button className="dropdown-item"   onClick={() => {
+                        {equipment.map(element => <li ><div className="dropdown-item"   onClick={() => {
                             setDeliveries(element.deliveries)
                             let deliveryTransformed = deliveries.map(d=>  ({
                                             event_id: d.id,
@@ -177,7 +180,7 @@ function Schedule() {
                                             color: "green"
                                         }))
                             setOpenSchedule([element.id, element.name]); 
-                            setConfirmDeliveries(element.deliveries) }}>{element.name}</button></li>)}
+                            setConfirmDeliveries(element.deliveries) }}>{element.name}</div></li>)}
                                 
                     </ul>
                 </li>           
@@ -185,7 +188,10 @@ function Schedule() {
                     <button className="nav-link" onClick={() => {setDisplayLayout(true);setUpdateContractors(false); setEditEquipment(false) }}>Display layout</button>
                 </li>
                 <li class="nav-item">
-                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}> Update contractor</button>
+                    <button className="nav-link"  onClick={()=> {setUpdateContractors(true); setDisplaySchedule(false); setEditEquipment(false); setEditEquipment(false); setAddContractor(false)}}> Update contractor's list</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(false); setAddContractor(false); setPendingInvitations(true) }}> Pending invitations</button>
                 </li>
                 <li class="nav-item">
                     <button className="nav-link" onClick={() => {setDisplayLayout(false); setDisplaySchedule(false); setUpdateContractors(false); setEditEquipment(false); setAddContractor(true)  }}>Add new contractor</button>
@@ -193,10 +199,14 @@ function Schedule() {
                 <li class="nav-item">
                     <button className="nav-link" onClick={() =>{ setUpdateContractors(false); setDisplaySchedule(false); setEditEquipment(true); setAddContractor(false) }}> Edit Equipment</button>
                 </li>
+                
             </ul>
-
+            </div>
             {displayLayout ? (
                 <Layout site_id={id} setDisplayLayout={setDisplayLayout} /> 
+            ): null}
+            {pendingInvitations ? (
+                <Invitations id={id} contractor={contractor} /> 
             ): null}
 
             {editEquipment ?
@@ -213,7 +223,7 @@ function Schedule() {
                 </div>
             </div>
                 {(openSchedule.length > 0 ?(
-                <div className="schedule-open-container"><div className="displayed-schedule"><h4>{openSchedule[1]} schedule</h4></div> 
+                <div className="schedule-open-container"><div className="displayed-schedule"><div className="title-schedule">SCHEDULE: {openSchedule[1].toUpperCase()}</div></div> 
                     <Scheduler
                         view="week"
                         events={deliveryTransformed}

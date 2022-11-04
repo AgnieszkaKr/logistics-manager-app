@@ -53,12 +53,14 @@ function Contractors({id, contractor}) {
 
   return (
     
-    <div>
-    <div className='contractors-dashboard'>Contractors:
+    <div className="contractors-container"> 
+    <div className='contractors-dashboard'>
+        
+        In this section, you can update the list of invited contractors
         <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">Company</th>
@@ -69,13 +71,9 @@ function Contractors({id, contractor}) {
             </tr>
         </thead>
         <tbody>
-            
                 {contractors.map(contractor =>  { return (
-                
-                <tr>
-                    
+                <tr> 
                 <th scope="row"></th>
-                    
                     <td>{contractor.user.name}</td>
                     <td>{contractor.user.last_name}</td>
                     <td >{contractor.user.company}</td>
@@ -95,7 +93,7 @@ function Contractors({id, contractor}) {
         <table class="table">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Company</th>

@@ -1,7 +1,18 @@
 .contractors-dashboard{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin-top: 2%;
 
+
+}
+.contractors-container{
+ 
+   
+}
+.contractors-dashboard{
+    max-width: 40%
+}
+.title-contractors{
+    font-size: 18px;
+    color:black;    
+    text-shadow: 1px 0 black;
+    letter-spacing:2.2px;
+    font-weight:bold;
 }

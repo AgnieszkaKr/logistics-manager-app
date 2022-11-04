@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
    
     def create 
-        new_user = User.create(permitted_params)
+        new_user = User.create!(permitted_params)
         if new_user.valid?
             session[:user_id] = new_user.id
             invitations = Invitation.where(email: params[:email])
@@ -33,9 +33,11 @@ class UsersController < ApplicationController
             end
             invitations.destroy_all
             render json: new_user, status: :created
-        else  
-            render json: {error: 'Validation Error'}
+        else
+            new_user.validate
+            render json: new_user.errors
         end
+        
     end
 
 
@@ -54,7 +56,7 @@ class UsersController < ApplicationController
     private 
 
     def permitted_params
-        params.permit(:name, :last_name, :company, :title, :email, :phone_number, :password)
+        params.permit(:name, :last_name, :company, :title, :email, :password)
     end
 
     def render_not_found

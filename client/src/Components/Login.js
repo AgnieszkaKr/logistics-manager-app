@@ -39,31 +39,25 @@ function Login({setLogWindow, setUserName, setLoggedIn}) {
     return ReactDOM.createPortal(
         <div className='login-form'>
             <div className='login-container'>
-            <button className="close-window" onClick={()=> setLogWindow(false)}> X</button>
-            <form onSubmit={(e) => handleLogIn(e)}>
-                <div className='container'>
-                    <img src='./Logo.png' alt='' className="logo-login"/>
-                    <div className='error-user'>{errorLogIn ? errorLogIn : null}</div>
-                    <br/>
-                        <div>
-                        <label className="login-lable" type="email" >Email</label>
-                            <br/>
+                <button className="close-window" onClick={()=> setLogWindow(false)}> X</button>
+                <h5 className="header-login" >LOG IN</h5>
+                <img className='logo-login' src='./Logo.png' alt=''/>
+                {errorLogIn ? <div className="error-user">{errorLogIn}</div>:<div className="error-place">?????</div> }
+                <form onSubmit={(e) => handleLogIn(e)}>
+                    <div className='login-content'>
+                        <div className="login-signup">
+                        <div className="input-lable-login"><label type="email" >Email</label></div>
                             <input className="input-field-user" type="email" name="email" />
                         </div>
-                        <div>
-                        <label className="login-lable" type="password">Password</label>
-                            <br/>
+                        <div className="login-signup">
+                            <div className="input-lable-login"><label type="password">Password</label></div>
                             <input className="input-field-user" type="password" name="password" />
                         </div>
-                        <br/>
-                        <div className="remember-me-field">
-                            <br/>
-                            <input className="checkbox-password" type="checkbox" />
-                            <label className="login-lable">Remember me</label>
-                        </div>
+                    </div>                       
+                    <div className="remember-me-field">
                         <button className="login-button">Log in</button>
-                </div>
-            </form> 
+                    </div>
+                </form> 
             </div>  
         </div>,
         document.getElementById('portal')

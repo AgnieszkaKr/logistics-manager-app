@@ -1,8 +1,8 @@
 .schedule-dashboard{
-    margin-right: 5%;
-    margin-left: 5%;
+
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .equipment-button{
     margin: 1%;
@@ -277,7 +277,23 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     color:black;
 }
 .displayed-schedule{
-    margin-top: 2%;
+    margin-top: 0.5%;
     margin-bottom: 2%
 }
 
+.title-schedule{
+    font-size: 18px;
+    color:black;    
+    text-shadow: 1px 0 black;
+    letter-spacing:2.2px;
+    font-weight:bold;
+}
+.schedule-open-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center
+}
+.site-dashboard{
+    margin-right: 2%;
+    margin-left: 2%;
+}

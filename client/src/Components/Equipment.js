@@ -29,7 +29,7 @@ function Equipment({id, name, equipment, setEquipment}) {
         .then(res =>{
         if(res.ok){        
             res.json()
-            // .then(req => setEquipment([...equipment, {id: req.id, site_id: id, name: newEquipment }]))
+            .then(req => setEquipment([...equipment, {id: req.id, site_id: id, name: newEquipment }]))
         } else {
             res.json().then(e => console.log(e))
         }})
