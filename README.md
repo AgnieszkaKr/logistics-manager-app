@@ -1,24 +1,13 @@
 # README
+# Constrax application for managing logistics on a construction site. The application allows users to schedule deliveries to different access points on construction sites like gates, hoists, and elevators. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#To start development server run:
 
-Things you may want to cover:
+- gem install 
+- npm install --prefix client
+- npm start --prefix client
+- rails s
 
-* Ruby version
+#Instead of npm start and rails s you can start development server using:
+- foreman start -f Procfile.dev
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
