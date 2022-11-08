@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import './Styling/NavBar.css'
 import { Link } from 'react-router-dom'
-import { useNavigate} from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 
 
 function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindow, loggedIn, setUserName, setLoggedIn}) {
-  const navigate = useNavigate()
+
   // const [userCreatedMessage, setUserCreatedMessage] = useState('')
   const handleLogOut =(e) =>{
     fetch('/logout', {
@@ -14,7 +14,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
     .then(req => req.json())
     .then(res => console.log(res))
     setLoggedIn(false)
-    navigate('/')
+    return <Navigate to="/" />
   }
   
   return (
