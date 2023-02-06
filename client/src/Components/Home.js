@@ -9,7 +9,7 @@ function Home() {
                 <div>We want to help you to manage logistics throughout your organization. 
                   We can help you to organize, store and monitor the distribution of goods to ensure items and resources are delivered to their appropriate destinations.
                 </div>
-                <button> Learn more </button>
+                <button onclick="/about"> Learn more </button>
           </div>
           <div className="home-logo">
                 <img src='./Logo.png' alt=""/>

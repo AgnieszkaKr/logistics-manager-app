@@ -14,7 +14,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
     .then(req => req.json())
     .then(res => console.log(res))
     setLoggedIn(false);
-    <Navigate to="/" />
+    
   }
   
     return (
@@ -38,7 +38,7 @@ function NavBar({setLogWindow, logWindow, userName, setSignupWindow, signupWindo
                         (<li><Link className='nav-link' onClick={() => setSignupWindow(!signupWindow)}>New Construction Site</Link></li>)
                       }
                       {/* if user is logged in navbar has button logged out if not login/ signup */}
-                      {loggedIn ? <Link className='nav-link'  onClick={(e)=> handleLogOut(e) } >Log out</Link> : (
+                      {loggedIn ? <Link className='nav-link' to="/" onClick={(e)=> handleLogOut(e) } >Log out</Link> : (
                             <>
                                 <li>
                                     <Link className='nav-link' onClick={()=> setLogWindow(true)}  >Login</Link>
