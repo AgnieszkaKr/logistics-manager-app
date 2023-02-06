@@ -40,11 +40,13 @@ function Contractors({id, contractor}) {
   return (
     
     <div className="contractors-container"> 
+    <h5>Contractors invited to the project who can schedule upcoming deliveries </h5>
     <div className='contractors-dashboard'>
         
         <table className="table">
         <thead className="thead-light">
             <tr>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
@@ -59,13 +61,14 @@ function Contractors({id, contractor}) {
                 {contractors.map(contractor =>  { return (
                 <tr> 
                 <th scope="row"></th>
+                    <td></td>
                     <td>{contractor.user.name}</td>
                     <td>{contractor.user.last_name}</td>
                     <td >{contractor.user.company}</td>
                     <td >{contractor.user.title}</td>
                     <td >{contractor.user.phone_number}</td>
                     <td >{contractor.user.email}</td>
-                    <td ><button onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>
+                    <td ><button className="contractor-remove-button" onClick={() => handleRemoveContractor(contractor.id)}>X</button></td>
                 </tr>)
                 }
             )}

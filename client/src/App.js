@@ -66,7 +66,7 @@ function App() {
       {logWindow ? <Login setLogWindow={setLogWindow} setUserName={setUserName} setLoggedIn={setLoggedIn}/> : null}
       {signupWindow ? <Signup setSignupWindow={setSignupWindow} signupWindow={signupWindow} setLogWindow={setLogWindow}/> : null}
 
-
+    <Footer />
     </div>
   );
 }

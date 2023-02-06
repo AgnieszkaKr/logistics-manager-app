@@ -293,7 +293,33 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     flex-direction: column;
     align-items:center
 }
-.site-dashboard{
-    margin-right: 2%;
-    margin-left: 2%;
+
+
+.nav {
+    background-color: black;
+    width: 100%;
+    margin-top: 0.1%;
+    display: flex;
+    justify-content:flex-end ;
+}
+.nav button{
+    color:rgba(255, 255, 255, 0.5)
+}
+.nav button:hover{
+    color:rgba(255, 255, 255, 0.75);
+    
+}
+#pills-contact.active{
+    color: white;
+    transform: scale(1.1);
+}
+.nav-link:focus{
+    transform: scale(1.1);
+    color: white
+}
+.nav-link.active{
+    color: white
+}
+.nav-link:focus{
+    color: white
 }

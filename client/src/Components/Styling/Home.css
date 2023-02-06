@@ -1,20 +1,49 @@
 .container-home{
     display: flex;
-    width: 80%;
-    margin-top: 3%;
-    margin-right: 5%;
-    margin-left: 7%;  
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
 }
 
 .home-text{
+    width: 40%;
     display: flex;
-    align-items: center;
-    width: 50%
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
 }
 
+.home-text h1{
+    margin-bottom: 5%;
+    font-weight: bolder;
+}
 .home-logo{
-    width: 30%
+    width: 40%;
+    display: flex;
+    justify-content: center;
 }
 
+.home-logo img{
+    width: 20rem;
+}
 
+.home-text button{
+    margin-top: 3rem;;
+    background-color: black;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    outline:none;
+    border: none;
+    color: rgb(255, 251, 251);
+    font-size: 1.5rem;
+    padding: 3px;
+    margin-left: 0.8%;
+}
+
+.home-text button:hover{
+    background-color:rgb(8, 8, 8);
+    cursor: pointer;
+    transform: scale(1.1);
+}

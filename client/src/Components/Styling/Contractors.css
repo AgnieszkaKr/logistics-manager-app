@@ -1,13 +1,13 @@
-.contractors-dashboard{
 
-
-}
 .contractors-container{
- 
-   
+    font-size: 2rem;
+    margin-left: 2%;
+    
 }
 .contractors-dashboard{
-    max-width: 95%
+    width: 70%;
+    font-size: 0.7rem;
+    margin-top: 4%;
 }
 .title-contractors{
     font-size: 18px;
@@ -15,4 +15,22 @@
     text-shadow: 1px 0 black;
     letter-spacing:2.2px;
     font-weight:bold;
+}
+
+.contractor-remove-button{
+    border-radius: 0.5rem;
+    font-weight: 900;
+    background-color:rgb(0, 0, 0);
+    border-width: 0.18rem;
+    color: white
+}
+.contractor-remove-button:focus{
+    transform: scale(1.1);
+    background-color:rgb(253, 220, 88);
+    color:black
+}
+.contractor-remove-button:hover{
+    transform: scale(1.1);
+    background-color:rgb(253, 220, 88);
+    color:black
 }

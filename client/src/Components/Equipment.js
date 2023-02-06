@@ -38,44 +38,43 @@ function Equipment({id, name, equipment, setEquipment}) {
         setNewEquipment("")
     }
     return (
-        <div>
-            <div className="add-new-eq"><h4>Add equipment to generate new schedule</h4></div>
-            <div>
-            <input className ="input-field-user" value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value)}}/>
+        <div className="add-new-eq">
+            <h4>Construction equipment</h4>
+            <div className="equipment-form">
+            <h6>Add new equipment to the list to generate schedule</h6>
+            <input className ="input-field-equipment" placeholder="New equipment name" value={newEquipment} onChange={(e)=> {setNewEquipment(e.target.value)}}/>
+            <button className='add-new-equipment-button'  onClick={handleNewEquipment}>Create</button>
             </div>
-            <div>
-            <button className='add-new-equipment' onClick={handleNewEquipment}>Create</button>
+            <h6>Avaliable equipment</h6>
+            <div className="equipment-list">
+                <table className="table">
+                <thead className="thead-light ">
+                    <tr>
+                    {/* <th scope="col">#</th> */}
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    {/* <th scope="col">Update Name</th> */}
+                    <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {equipment.map(eq =>
+                    
+                        <tr key={eq.id}>  
+                        <th scope="row"></th>
+                            <td>{eq.name}</td>
+                            {/* <td>
+                                <input/>
+                                <button>ok</button>
+                            </td> */}
+                            <td>
+                                <button className="remove-equipment-button" onClick={()=> handleEquipmentDelete(eq.id)}>X</button>
+                            </td>
+                        </tr>)
+                    }
+                </tbody>
+                </table>
             </div>
-            <div>
-            <table className="table">
-            <thead className="thead-light ">
-                <tr>
-                {/* <th scope="col">#</th> */}
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                {/* <th scope="col">Update Name</th> */}
-                <th scope="col">Remove</th>
-                </tr>
-            </thead>
-            <tbody>
-                {equipment.map(eq =>
-                
-                    <tr key={eq.id}>  
-                    <th scope="row"></th>
-                        <td>{eq.name}</td>
-                        {/* <td>
-                            <input/>
-                            <button>ok</button>
-                        </td> */}
-                        <td>
-                            <button onClick={()=> handleEquipmentDelete(eq.id)}>X</button>
-                        </td>
-                    </tr>)
-                }
-            </tbody>
-            </table>
-            </div>
-        
         </div>
   )
 }

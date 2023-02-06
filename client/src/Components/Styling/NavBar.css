@@ -1,13 +1,13 @@
 .logo-main-page{
-    margin-left: 2%;
+    margin-left: 5%;
     margin-right: 2%;
-    max-width: 10%;
-    height: auto
-
+    width: 10rem;
 }
 .logo{
     color: 	rgb(221, 216, 166);
     letter-spacing: .2rem;
     font-weight: bolder;
-
+}
+.navbar{
+    background-color: black;
 }
