@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import './Styling/Login.css'
 import ReactDOM from 'react-dom'
+import { Navigate } from "react-router-dom";
+
 
 
 
 function Login({setLogWindow, setUserName, setLoggedIn}) {
     const [errorLogIn, setErrorLogIn] = useState(null)
 
-    
     const handleLogIn = async (e) =>{
         e.preventDefault()
         let name = e.target.email.value
@@ -27,7 +28,9 @@ function Login({setLogWindow, setUserName, setLoggedIn}) {
             setLogWindow(false)
             setLoggedIn(true)
             setUserName(res.response)
-            setErrorLogIn(null)
+            setErrorLogIn(null);
+            
+            //<Navigate to="/myConstructions" replace={true}/>
            
         }else{
             setErrorLogIn(res.error)

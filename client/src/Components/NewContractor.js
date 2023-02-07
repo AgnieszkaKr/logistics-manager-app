@@ -32,6 +32,8 @@ function NewContractor(id) {
                         email:""
                     })
                     setContractorAdded(true)
+                    setCompanyError(false)
+                    setEmailError(false)
                     res.json().then(console.log(res))
                 } else {
                     res.json().then(e => setErrors(e.errors))

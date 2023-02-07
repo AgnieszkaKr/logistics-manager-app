@@ -1,8 +1,6 @@
 .schedule-dashboard{
-
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 .equipment-button{
     margin: 1%;
@@ -22,19 +20,11 @@
     width: 80%;
     flex-wrap: wrap;
 }
-.schedule-open-container{
-   width: 90%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
 
-}
 
-.schedule-container{
-   padding: 50%
-}
+
 .header1-text{
-    font-size: 25px;
+    font-size: 18px;
     color: #90CDF9;
     font-weight: 500;
 }
@@ -50,16 +40,16 @@
 }
 
 .base-text {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .help-text {
-    font-size: 12px;
+    font-size: 10px;
     color: #999;
 }
 
 .disabled-text {
-    font-size: 12px;
+    font-size: 10px;
     color: #ccc;
 }
 
@@ -71,12 +61,14 @@
 .scheduler td {
     padding: 0px;
 }
-
+.rs__outer_table{
+    height: 50%
+}
 .expander-space {
     overflow: hidden;
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 0.5em;
+    height: 0.5em;
     line-height: 1em;
     font-size: .9em;
     vertical-align: middle;
@@ -276,10 +268,7 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
 .nav{
     color:black;
 }
-.displayed-schedule{
-    margin-top: 0.5%;
-    margin-bottom: 2%
-}
+
 
 .title-schedule{
     font-size: 18px;
@@ -289,9 +278,9 @@ table.resource-table tr td:last-child, /*table.scheduler-bg-table tr td:last-chi
     font-weight:bold;
 }
 .schedule-open-container{
-    display: flex;
-    flex-direction: column;
-    align-items:center
+    margin-right: 10rem;
+    margin-left: 10rem;
+    height:50rem
 }
 
 

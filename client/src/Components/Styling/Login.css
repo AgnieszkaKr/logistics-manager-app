@@ -17,6 +17,7 @@
     z-index: 1000;
     display: flex;
     justify-content: center;
+    align-items: center
 }
 .login-container{
     background-color: black;
@@ -24,9 +25,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-height: 100%;
-    margin-top: 3%;
-    margin-bottom: 3%
+    height: 22rem;
+
 }
 .header-login{
    color: white; 
@@ -72,7 +72,7 @@
 }
 
 .login-button:hover{
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(253, 220, 88);
     cursor: pointer;
     transform: scale(1.1);
 }
