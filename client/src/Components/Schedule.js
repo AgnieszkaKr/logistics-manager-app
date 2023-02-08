@@ -37,7 +37,7 @@ function Schedule() {
             res.json().then(e => setErrors(e.errors))}
         })
 
-    },[equipment])
+    },[])
 
 
     const[newDeliveryRes, setNewDeliveryRes]=useState()
