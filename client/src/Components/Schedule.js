@@ -221,7 +221,6 @@ function Schedule() {
             (<>
             <div className="equipment-button-container"> 
                 <div className="access-points-buttons"> 
-                
                 </div>
             </div>
                 {(openSchedule.length > 0 ?(
